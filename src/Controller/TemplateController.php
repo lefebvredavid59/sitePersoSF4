@@ -8,12 +8,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TemplateController extends AbstractController
 {
-    /**
-     * @Route("/template", name="template")
-     */
-    public function index(): Response
+    public function header(): Response
     {
-        return $this->render('template/index.html.twig', [
+        return $this->render('template/header.html.twig', [
+            'controller_name' => 'TemplateController',
+        ]);
+    }
+
+    public function footer(): Response
+    {
+        return $this->render('template/footer.html.twig', [
+            'controller_name' => 'TemplateController',
+        ]);
+    }
+
+    public function categright(): Response
+    {
+        return $this->render('template/category.html.twig', [
             'controller_name' => 'TemplateController',
         ]);
     }

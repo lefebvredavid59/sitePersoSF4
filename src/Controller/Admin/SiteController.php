@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Site;
 use App\Form\SiteType;
@@ -21,7 +21,7 @@ class SiteController extends AbstractController
      */
     public function index(SiteRepository $siteRepository): Response
     {
-        return $this->render('site/index.html.twig', [
+        return $this->render('admin/site/index.html.twig', [
             'sites' => $siteRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class SiteController extends AbstractController
             return $this->redirectToRoute('site_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('site/new.html.twig', [
+        return $this->render('admin/site/new.html.twig', [
             'site' => $site,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class SiteController extends AbstractController
      */
     public function show(Site $site): Response
     {
-        return $this->render('site/show.html.twig', [
+        return $this->render('admin/site/show.html.twig', [
             'site' => $site,
         ]);
     }
@@ -72,7 +72,7 @@ class SiteController extends AbstractController
             return $this->redirectToRoute('site_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('site/edit.html.twig', [
+        return $this->render('admin/site/edit.html.twig', [
             'site' => $site,
             'form' => $form->createView(),
         ]);

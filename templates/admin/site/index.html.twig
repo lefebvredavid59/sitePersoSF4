@@ -1,37 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Site index{% endblock %}
+{% block title %}{{ parent() }} Gestion site{% endblock %}
 
 {% block body %}
-    <h1>Site index</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion Site</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Register</th>
-                <th>Available</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for site in sites %}
-            <tr>
-                <td>{{ site.id }}</td>
-                <td>{{ site.register ? 'Yes' : 'No' }}</td>
-                <td>{{ site.available ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('site_show', {'id': site.id}) }}">show</a>
-                    <a href="{{ path('site_edit', {'id': site.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Inscription</th>
+                        <th>Dispo</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for site in sites %}
+                        <tr>
+                            <td>{{ site.register ? 'Oui' : 'Non' }}</td>
+                            <td>{{ site.available ? 'Oui' : 'Non' }}</td>
+                            <td>
+                                <a href="{{ path('site_show', {'id': site.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('site_edit', {'id': site.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="text-center">
+                            <td colspan="4">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="d-grid">
+                    <a href="{{ path('site_new') }}" class="btn btn-outline-info">Créer un nouveau</a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('site_new') }}">Create new</a>
+    </div>
 {% endblock %}

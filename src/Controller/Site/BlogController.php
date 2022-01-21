@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +13,7 @@ class BlogController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('blog/index.html.twig', [
+        return $this->render('site/blog/blog.html.twig', [
             'controller_name' => 'BlogController',
         ]);
     }

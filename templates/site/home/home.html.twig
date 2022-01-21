@@ -1,20 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}{{ parent() }} Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid picsme" src="{{ asset('assets/picture/moi.jpg') }}" alt="photo de moi">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="display-2">Bienvenue je suis</h1>
+                <h1 class="display-1">David</h1>
+                <h1 class="display-2">Full stack Developper</h1>
+                {% for dispo in dispos %}
+                    {% if dispo.available == true %}
+                        <h1 class="display-1 neonVert">Actuellement disponible</h1>
+                    {% else %}
+                        <h1 class="display-1 neonRouge">Actuellement indisponible</h1>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container my-5">
+        <h1 class="navhead display-2">Derniers articles</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Code/Projet/Symfony/sitePersoSF4/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Code/Projet/Symfony/sitePersoSF4/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="row mx-auto mt-3">
+            <div class="col-md-5">
+                <a href="/">
+                    <img class="img-fluid mb-3 mb-md-0 imgBlog"
+                         src="https://i.jeuxactus.com/datas/jeux/t/h/the-legend-of-zelda-breath-of-the-wild/xl/the-legend-of-zelda-bre-58787242dd5bf.jpg"
+                         alt="Image de l'article ">
+                </a>
+            </div>
+            <div class="col-md-7">
+                <h3 class="titleBlog">Project One</h3>
+                <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam
+                    exercitationem
+                    expedita
+                    laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                    perspiciatis atque eveniet unde.</p>
+                <div class="d-grid">
+                    <a class="btn btn-outline-primary" href="#">Lire l'article</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

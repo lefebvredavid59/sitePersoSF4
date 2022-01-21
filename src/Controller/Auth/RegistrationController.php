@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Auth;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -30,11 +30,17 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRegisterDate(new \DateTimeImmutable('now'));
+            $user->setLastCo(new \DateTime('now'));
             // encode the plain password
             $user->setPassword(
             $userPasswordEncoder->encodePassword(
@@ -51,15 +57,18 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('mrrobot@lefebvredavid.fr', 'Inscription | LefebvreDavid.fr'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->subject('Veuillez confirmer votre email')
+                    ->context([
+                        'pseudo' => $user->getPseudo(),
+                    ])
+                    ->htmlTemplate('auth/registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
+            $this->addFlash('Sendemail', 'Un mail 📧 vient de partir pour valider votre compte');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_register');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('auth/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -91,7 +100,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('successValidate', 'Votre adresse e-mail 📧 a été vérifiée.');
 
         return $this->redirectToRoute('app_register');
     }

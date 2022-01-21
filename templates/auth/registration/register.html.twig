@@ -1,21 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ parent() }} Inscription{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
 
-    <h1>Register</h1>
+    <h1 class="navhead display-2 text-center">Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <div class="container">
+        <div class="col-6 mx-auto">
+            <div class="card border-0 shadow rounded-3">
+                <div class="card-body py-4 p-sm-5">
+                    {% for flashError in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    {% for flashEmailSend in app.flashes('Sendemail') %}
+                        <div class="alert sucessAle text-center text-light" role="alert">{{ flashEmailSend }}</div>
+                    {% endfor %}
+
+                    {{ form_start(registrationForm) }}
+                    <div class="form-floating mb-3">
+                        {{ form_widget(registrationForm.pseudo,
+                            {'attr': {'class':'form-control','placeholder': 'Pseudo'}}) }}
+                        {{ form_label(registrationForm.pseudo) }}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        {{ form_widget(registrationForm.email,
+                            {'attr': {'class':'form-control','placeholder': 'E-Mail'}}) }}
+                        {{ form_label(registrationForm.email) }}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        {{ form_widget(registrationForm.plainPassword.first,
+                            {'attr': {'class':'form-control','placeholder': 'Mot de passe'}}) }}
+                        {{ form_label(registrationForm.plainPassword.first) }}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        {{ form_widget(registrationForm.plainPassword.second,
+                            {'attr': {'class':'form-control','placeholder': 'Confirmer mot de passe'}}) }}
+                        {{ form_label(registrationForm.plainPassword.second) }}
+                    </div>
+
+                    <div class="form-check mb-3">
+                        {{ form_widget(registrationForm.agreeTerms,
+                            {'attr': {'class':'form-check-input'}}) }}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-success btn-lg text-uppercase">
+                            <i class="fa-solid fa-user-check me-2"></i>
+                            Inscription</button>
+                    </div>
+                    {{ form_end(registrationForm) }}
+
+                    <hr class="my-4">
+
+                    <div class="d-grid">
+                        <a href="{{ path('app_login') }}" class="btn btn-outline-warning btn-lg text-uppercase"
+                           type="submit">
+                            <i class="fa-solid fa-right-to-bracket me-2"></i> Déjà un compte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
