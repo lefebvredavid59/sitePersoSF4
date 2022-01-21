@@ -33,7 +33,8 @@ class ArticleRepository extends ServiceEntityRepository
     public function articleCateg($slug,$page)
     {
         $query = $this->createQueryBuilder('a')
-            ->where('a.category = :slug')
+            ->innerJoin('a.category','c')
+            ->where('c.slug = :slug')
             ->setParameter('slug', $slug)
             ->orderBy('a.created', 'DESC')
             ->setFirstResult(($page - 1) * 5)
