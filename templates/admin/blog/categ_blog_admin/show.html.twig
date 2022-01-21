@@ -1,30 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CategBlog{% endblock %}
+{% block title %}{{ parent() }} Gestion Catégorie {{ category_blog.name }}{% endblock %}
 
 {% block body %}
-    <h1>CategBlog</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion Catégorie {{ category_blog.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categ_blog.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ categ_blog.name }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ categ_blog.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('categ_blog_admin_index') }}">back to list</a>
+                <table class="table text-center">
+                    <tbody>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ categ_blog.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slug</th>
+                        <td>{{ categ_blog.slug }}</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-    <a href="{{ path('categ_blog_admin_edit', {'id': categ_blog.id}) }}">edit</a>
+                <div class="d-grid">
+                    <a href="{{ path('categ_blog_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
+                        liste</a>
 
-    {{ include('categ_blog_admin/_delete_form.html.twig') }}
+                    <a href="{{ path('categ_blog_admin_edit', {'id': category_blog.id}) }}"
+                       class="btn btn-outline-secondary">Modifier</a>
+
+                    {{ include('Admin/Blog/categ_blog_admin/_delete_form.html.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
