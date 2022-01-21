@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New CategReal{% endblock %}
+{% block title %}{{ parent() }} Nouvelle Catégorie Réalisation{% endblock %}
 
 {% block body %}
-    <h1>Create new CategReal</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Nouvelle Catégorie Réalisation</h1>
 
-    {{ include('categ_real_admin/_form.html.twig') }}
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('categ_real_admin_index') }}">back to list</a>
+                    {{ include('Admin/real/categ_real_admin/_form.html.twig') }}
+                    <div class="d-grid">
+                        <a href="{{ path('categ_real_admin_index') }}" class="btn btn-outline-primary">Retour a la
+                            liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

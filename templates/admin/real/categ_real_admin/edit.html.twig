@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CategReal{% endblock %}
+{% block title %}{{ parent() }} Edition Catégorie Réalisation{% endblock %}
 
 {% block body %}
-    <h1>Edit CategReal</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Edition Catégorie Réalisation</h1>
 
-    {{ include('categ_real_admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('categ_real_admin_index') }}">back to list</a>
+                {{ include('Admin/real/categ_real_admin/_form.html.twig', {'button_label': 'Update'}) }}
+                <div class="d-grid">
+                    <a href="{{ path('categ_real_admin_index') }}" class="btn btn-outline-primary">Retour à la liste</a>
+                </div>
 
-    {{ include('categ_real_admin/_delete_form.html.twig') }}
+                {{ include('Admin/real/categ_real_admin/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

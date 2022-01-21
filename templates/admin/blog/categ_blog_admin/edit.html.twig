@@ -4,18 +4,18 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="navhead display-2 text-center">Edition Site</h1>
+        <h1 class="navhead display-2 text-center">Edition Catégorie Blog</h1>
 
         <div class="card">
             <div class="card-body shadow-lg">
 
-                {{ include('Admin/Blog/categ_blog_admin/_form.html.twig', {'button_label': 'Mis a jour'}) }}
+                {{ include('admin/blog/categ_blog_admin/_form.html.twig', {'button_label': 'Mis a jour'}) }}
 
                 <div class="d-grid">
                     <a href="{{ path('categ_blog_admin_index') }}" class="btn btn-outline-primary">Retour à la liste</a>
                 </div>
 
-                {{ include('Admin/Blog/categ_blog_admin/_delete_form.html.twig') }}
+                {{ include('admin/blog/categ_blog_admin/_delete_form.html.twig') }}
             </div>
         </div>
     </div>
