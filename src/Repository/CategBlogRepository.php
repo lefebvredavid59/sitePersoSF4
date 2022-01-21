@@ -19,6 +19,15 @@ class CategBlogRepository extends ServiceEntityRepository
         parent::__construct($registry, CategBlog::class);
     }
 
+    public function categBlog()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.articles is not empty')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return CategBlog[] Returns an array of CategBlog objects
     //  */

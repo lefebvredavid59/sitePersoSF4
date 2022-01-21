@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategBlogRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +23,10 @@ class TemplateController extends AbstractController
         ]);
     }
 
-    public function categright(): Response
+    public function categright(CategBlogRepository $categBlogRepository): Response
     {
         return $this->render('template/category.html.twig', [
-            'controller_name' => 'TemplateController',
+            'categs' => $categBlogRepository->categBlog(),
         ]);
     }
 }

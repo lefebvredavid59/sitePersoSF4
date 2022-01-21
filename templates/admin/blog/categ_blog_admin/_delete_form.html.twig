@@ -1,5 +1,5 @@
 
-<form method="post" action="{{ path('categ_blog_admin_delete', {'id': categ_blog.id}) }}"
+<form class="d-grid" method="post" action="{{ path('categ_blog_admin_delete', {'id': categ_blog.id}) }}"
       onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet catégorie ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categ_blog.id) }}">
     <button class="btn btn-outline-danger my-3">Supprimer</button>

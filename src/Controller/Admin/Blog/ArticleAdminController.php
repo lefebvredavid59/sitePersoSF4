@@ -5,6 +5,7 @@ namespace App\Controller\Admin\Blog;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\UploadArticle;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,13 +32,20 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/new", name="article_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,
+                        UploadArticle $uploadArticle): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setCreated(new \DateTime('now'));
+            if ($image = $form->get('picture')->getData()){
+                $fileName = $uploadArticle->upload($image,$article);
+                //Mets a jour l'entite
+                    $article->setPicture($fileName);
+            }
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -63,12 +71,22 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/{id}/edit", name="article_admin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager,
+                         UploadArticle $uploadArticle): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($image = $form->get('picture')->getData()) {
+                // Supprimer l'image deja existante
+                if ($article->getPicture()) {
+                    $uploadArticle->remove($article->getPicture());
+                }
+                $fileName = $uploadArticle->upload($image,$article);
+                //Mets a jour l'entite
+                $article->setPicture($fileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('article_admin_index', [], Response::HTTP_SEE_OTHER);
@@ -83,9 +101,11 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/{id}", name="article_admin_delete", methods={"POST"})
      */
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager,
+                           UploadArticle $uploadArticle): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+            $uploadArticle->remove($article->getPicture());
             $entityManager->remove($article);
             $entityManager->flush();
         }

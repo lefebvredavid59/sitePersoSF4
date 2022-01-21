@@ -1,42 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}{{ parent() }} Voir Article {{ article.title }}{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Voir Article {{ article.title }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ article.slug }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ article.picture }}</td>
-            </tr>
-            <tr>
-                <th>Movie</th>
-                <td>{{ article.movie }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('article_admin_index') }}">back to list</a>
+                <table class="table text-center">
+                    <tbody>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ article.created|date('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ article.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slug</th>
+                        <td>{{ article.slug }}</td>
+                    </tr>
+                    <tr>
+                        <th>Picture</th>
+                        <td>{{ article.picture }}</td>
+                    </tr>
+                    <tr>
+                        <th>Movie</th>
+                        <td>{{ article.movie }}</td>
+                    </tr>
+                    <tr>
+                        <th>Content</th>
+                        <td>{{ article.content }}</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-    <a href="{{ path('article_admin_edit', {'id': article.id}) }}">edit</a>
+                <div class="d-grid">
+                    <a href="{{ path('article_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
+                        liste</a>
 
-    {{ include('article_admin/_delete_form.html.twig') }}
+                    <a href="{{ path('article_admin_edit', {'id': article.id}) }}"
+                       class="btn btn-outline-secondary">Modifier</a>
+
+                    {{ include('admin/blog/article_admin/_delete_form.html.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

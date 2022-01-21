@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Blog{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto">
+
+        <h1 class="navhead display-2">Mes articles</h1>
+
+        <div class="row">
+
+            <div class="col-12 col-lg-9">
+
+                {% for article in articles %}
+                <div class="row mt-3">
+                    <div class="col-md-5">
+                        <a href="/">
+                            <img class="img-fluid mb-3 mb-md-0 imgBlog"
+                                 src="{{ asset('/uploads/articles/'~ article.picture) }}"
+                                 alt="Image de l'article {{ article.title }}">
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <h3 class="titleBlog">{{ article.title }}</h3>
+                        <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam
+                            exercitationem
+                            expedita
+                            laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                            perspiciatis atque eveniet unde.</p>
+                        <div class="d-grid">
+                            <a class="btn btn-outline-primary" href="#">Lire l'article</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+
+
+            {{ render(controller('App\\Controller\\TemplateController::categright')) }}
+
+        </div>
+
+        {% if max_page > 1 %}
+            <div class="container mt-3 d-flex justify-content-center">
+                <nav>
+                    {% set route = 'blog' %}
+                    {% set params = {} %}
+                    <ul class="pagination">
+
+                        {# Pagination Avant #}
+                        {% if current_page > 1 %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{{ path(route, params|merge({page: current_page - 1})) }}"><i
+                                            class="fas fa-chevron-left"></i></a>
+                            </li>
+                        {% endif %}
+                        {# Fin Pagination Avant #}
+
+                        {% for page in range(max(current_page-2, 1), min(current_page+2, max_page)) %}
+                            <li class="page-item {% if page == current_page %}active{% endif %} d-block d-sm-none d-md-block d-md-none">
+                                <a class="page-link"
+                                   href="{{ path(route, params|merge({page: page})) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {# Pagination Apres #}
+                        {% if current_page < max_page %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{{ path(route, params|merge({page: current_page + 1} )) }}"><i
+                                            class="fas fa-chevron-right"></i></a>
+                            </li>
+                        {% endif %}
+                        {# Fin Pagination Apres #}
+
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
