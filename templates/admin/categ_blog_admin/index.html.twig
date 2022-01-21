@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategBlog index{% endblock %}
+
+{% block body %}
+    <h1>CategBlog index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categ_blog in categ_blogs %}
+            <tr>
+                <td>{{ categ_blog.id }}</td>
+                <td>{{ categ_blog.name }}</td>
+                <td>{{ categ_blog.slug }}</td>
+                <td>
+                    <a href="{{ path('categ_blog_admin_show', {'id': categ_blog.id}) }}">show</a>
+                    <a href="{{ path('categ_blog_admin_edit', {'id': categ_blog.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categ_blog_admin_new') }}">Create new</a>
+{% endblock %}
