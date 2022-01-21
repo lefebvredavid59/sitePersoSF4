@@ -23,7 +23,7 @@ class CategBlogAdminController extends AbstractController
      */
     public function index(CategBlogRepository $categBlogRepository): Response
     {
-        return $this->render('admin/Blog/categ_blog_admin/index.html.twig', [
+        return $this->render('admin/blog/categ_blog_admin/index.html.twig', [
             'categ_blogs' => $categBlogRepository->findAll(),
         ]);
     }
@@ -44,7 +44,7 @@ class CategBlogAdminController extends AbstractController
             return $this->redirectToRoute('categ_blog_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Blog/categ_blog_admin/new.html.twig', [
+        return $this->render('admin/blog/categ_blog_admin/new.html.twig', [
             'categ_blog' => $categBlog,
             'form' => $form->createView(),
         ]);
@@ -55,7 +55,7 @@ class CategBlogAdminController extends AbstractController
      */
     public function show(CategBlog $categBlog): Response
     {
-        return $this->render('admin/Blog/categ_blog_admin/show.html.twig', [
+        return $this->render('admin/blog/categ_blog_admin/show.html.twig', [
             'categ_blog' => $categBlog,
         ]);
     }
@@ -74,7 +74,7 @@ class CategBlogAdminController extends AbstractController
             return $this->redirectToRoute('categ_blog_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Blog/categ_blog_admin/edit.html.twig', [
+        return $this->render('admin/blog/categ_blog_admin/edit.html.twig', [
             'categ_blog' => $categBlog,
             'form' => $form->createView(),
         ]);
