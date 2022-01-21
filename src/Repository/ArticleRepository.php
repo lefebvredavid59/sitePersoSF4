@@ -30,6 +30,18 @@ class ArticleRepository extends ServiceEntityRepository
         return new Paginator($query, $fetchJoinCollection = true);
     }
 
+    public function articleCateg($slug,$page)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.category = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('a.created', 'DESC')
+            ->setFirstResult(($page - 1) * 5)
+            ->setMaxResults(5);
+
+        return new Paginator($query, $fetchJoinCollection = true);
+    }
+
     public function articleHome()
     {
         return $this->createQueryBuilder('a')

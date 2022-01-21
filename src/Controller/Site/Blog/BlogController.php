@@ -13,7 +13,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{page}", name="blog")
      */
-    public function index($page = 1 , ArticleRepository $articleRepository): Response
+    public function blog_home($page = 1 , ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->article($page);
         $maxPage = ceil(count($articles) / 5);
@@ -22,6 +22,31 @@ class BlogController extends AbstractController
             'articles' => $articles,
             'current_page' => $page,
             'max_page' => $maxPage,
+        ]);
+    }
+
+    /**
+     * @Route("/category/{slug}/{page}", name="blog_categ")
+     */
+    public function blog_categ_home($slug, $page = 1 , ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->articleCateg($slug,$page);
+        $maxPage = ceil(count($articles) / 5);
+
+        return $this->render('site/blog/blog_home.html.twig', [
+            'articles' => $articles,
+            'current_page' => $page,
+            'max_page' => $maxPage,
+        ]);
+    }
+
+    /**
+     * @Route("/blog/article/{slug}", name="blog")
+     */
+    public function blog_article(Article $article): Response
+    {
+        return $this->render('site/blog/article_view.html.twig', [
+            'article' => $article,
         ]);
     }
 }
