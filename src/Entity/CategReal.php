@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategRealRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CategRealRepository::class)
@@ -18,12 +19,13 @@ class CategReal
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=128)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=128,unique=true)
      */
     private $slug;
 
