@@ -42,8 +42,8 @@
 }
 
 .imgBlog {
-  height: 300px;
-  width: 700px;
+  height: 170px;
+  width: 390px;
   border-radius: 50px;
 }
 
@@ -53,4 +53,20 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 25px;
+}
+
+.linkart {
+  text-transform: uppercase;
+  background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-size: 15px;
+}
+.linkart:hover {
+  text-transform: uppercase;
+  background: linear-gradient(to top, #00ff11 20%, #3333cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
 }

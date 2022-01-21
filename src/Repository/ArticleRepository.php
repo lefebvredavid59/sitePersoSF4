@@ -23,11 +23,20 @@ class ArticleRepository extends ServiceEntityRepository
     public function article($page)
     {
         $query = $this->createQueryBuilder('a')
-            ->orderBy('a.created', 'ASC')
-            ->setFirstResult(($page - 1) * 2)
-            ->setMaxResults(2);
+            ->orderBy('a.created', 'DESC')
+            ->setFirstResult(($page - 1) * 5)
+            ->setMaxResults(5);
 
         return new Paginator($query, $fetchJoinCollection = true);
+    }
+
+    public function articleHome()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.created','DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

@@ -1,0 +1,32 @@
+{% for article in articles %}
+    <div class="row mt-3">
+        <div class="col-md-5">
+
+            <img class="img-fluid mb-3 mb-md-0 imgBlog"
+                 src="{{ asset('/uploads/articles/'~ article.picture) }}"
+                 alt="Image de l'article {{ article.title }}">
+
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <h3 class="titleBlog">{{ article.title }}</h3>
+            </div>
+            <p class="blockquote-footer mt-1">
+                {{ article.category.name }}
+            </p>
+            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
+                veniam
+                exercitationem
+                expedita
+                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni
+                pariatur quos
+                perspiciatis atque eveniet unde.</p>
+            <div class="text-end">
+                <a class="text-decoration-none linkart" href="#">
+                    Lire l'article
+                    <i class="fa-solid fa-greater-than fa-xs ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

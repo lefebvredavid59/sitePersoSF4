@@ -16,7 +16,7 @@ class BlogController extends AbstractController
     public function index($page = 1 , ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->article($page);
-        $maxPage = ceil(count($articles) / 2);
+        $maxPage = ceil(count($articles) / 5);
 
         return $this->render('site/blog/blog_home.html.twig', [
             'articles' => $articles,
