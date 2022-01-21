@@ -26,7 +26,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{slug}/{page}", name="blog_categ")
+     * @Route("/category/{slug}/{page}", name="blog_categ")
      */
     public function blog_categ_home($page = 1, $slug, ArticleRepository $articleRepository): Response
     {
