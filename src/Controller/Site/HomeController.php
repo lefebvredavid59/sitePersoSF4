@@ -13,11 +13,31 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SiteRepository $siteRepository, ArticleRepository $articleRepository): Response
+    public function home(SiteRepository $siteRepository, ArticleRepository $articleRepository): Response
     {
         return $this->render('site/home/home.html.twig', [
             'dispos' => $siteRepository->findAll(),
             'articles' => $articleRepository->articleHome(),
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(): Response
+    {
+        return $this->render('site/about/about.html.twig', [
+            'controller_name' => 'AboutController',
+        ]);
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('site/about/about.html.twig', [
+            'controller_name' => 'AboutController',
         ]);
     }
 }
