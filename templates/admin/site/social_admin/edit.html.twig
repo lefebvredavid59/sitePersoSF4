@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Social{% endblock %}
+{% block title %}{{ parent() }} Edition lien {{ social.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Social</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Edition lien {{ social.name }}</h1>
 
-    {{ include('social_admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('social_admin_index') }}">back to list</a>
-
-    {{ include('social_admin/_delete_form.html.twig') }}
+                {{ include('admin/site/social_admin/_form.html.twig', {'button_label': 'Mis a jour'}) }}
+                <div class="d-grid">
+                    <a href="{{ path('social_admin_index') }}" class="btn btn-outline-primary">Retour à la liste</a>
+                </div>
+                {{ include('admin/site/social_admin/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

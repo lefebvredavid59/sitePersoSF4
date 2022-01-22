@@ -1,39 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Social index{% endblock %}
+{% block title %}{{ parent() }} Gestion lien social{% endblock %}
 
 {% block body %}
-    <h1>Social index</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion lien social</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Logo</th>
-                <th>Link</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for social in socials %}
-            <tr>
-                <td>{{ social.id }}</td>
-                <td>{{ social.name }}</td>
-                <td>{{ social.logo }}</td>
-                <td>{{ social.link }}</td>
-                <td>
-                    <a href="{{ path('social_admin_show', {'id': social.id}) }}">show</a>
-                    <a href="{{ path('social_admin_edit', {'id': social.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Logo</th>
+                        <th>Link</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for social in socials %}
+                        <tr>
+                            <td>{{ social.name }}</td>
+                            <td><i class="{{ social.logo }} fa-2xl"></i></td>
+                            <td>
+                                <a class="text-decoration-none" href="{{ social.link }}" target="_blank">Lien</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('social_admin_show', {'id': social.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('social_admin_edit', {'id': social.id}) }}">Modifieer</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="text-center">
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="d-grid">
+                    <a href="{{ path('social_admin_new') }}" class="btn btn-outline-info">Créer un nouveau</a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('social_admin_new') }}">Create new</a>
+    </div>
 {% endblock %}

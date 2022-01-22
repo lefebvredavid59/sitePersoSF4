@@ -1,34 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Social{% endblock %}
+{% block title %}{{ parent() }} Gestion {{ social.name }}{% endblock %}
 
 {% block body %}
-    <h1>Social</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion {{ social.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ social.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ social.name }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ social.logo }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td>{{ social.link }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('social_admin_index') }}">back to list</a>
+                <table class="table text-center">
+                    <tbody>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ social.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Logo</th>
+                        <td><i class="{{ social.logo }} fa-2xl"></i></td>
+                    </tr>
+                    <tr>
+                        <th>Lien</th>
+                        <td>{{ social.link }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="d-grid">
+                    <a href="{{ path('social_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
+                        liste</a>
 
-    <a href="{{ path('social_admin_edit', {'id': social.id}) }}">edit</a>
+                    <a href="{{ path('social_admin_edit', {'id': social.id}) }}" class="btn btn-outline-secondary">Modifier</a>
 
-    {{ include('social_admin/_delete_form.html.twig') }}
+                    {{ include('admin/site/social_admin/_delete_form.html.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

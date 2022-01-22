@@ -23,7 +23,7 @@ class SocialAdminController extends AbstractController
      */
     public function index(SocialRepository $socialRepository): Response
     {
-        return $this->render('social_admin/index.html.twig', [
+        return $this->render('admin/site/social_admin/index.html.twig', [
             'socials' => $socialRepository->findAll(),
         ]);
     }
@@ -44,7 +44,7 @@ class SocialAdminController extends AbstractController
             return $this->redirectToRoute('social_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('social_admin/new.html.twig', [
+        return $this->render('admin/site/social_admin/new.html.twig', [
             'social' => $social,
             'form' => $form->createView(),
         ]);
@@ -55,7 +55,7 @@ class SocialAdminController extends AbstractController
      */
     public function show(Social $social): Response
     {
-        return $this->render('social_admin/show.html.twig', [
+        return $this->render('admin/site/social_admin/show.html.twig', [
             'social' => $social,
         ]);
     }
@@ -74,7 +74,7 @@ class SocialAdminController extends AbstractController
             return $this->redirectToRoute('social_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('social_admin/edit.html.twig', [
+        return $this->render('admin/site/social_admin/edit.html.twig', [
             'social' => $social,
             'form' => $form->createView(),
         ]);

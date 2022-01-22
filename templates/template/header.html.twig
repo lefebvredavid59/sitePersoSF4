@@ -19,17 +19,21 @@
                     </a>
                 </li>
 
+                {% if blogs is not empty %}
                 <li class="nav-item">
                     <a href="{{ path('blog') }}" class="nav-link navhead">
                         Blog
                     </a>
                 </li>
+                {% endif %}
 
+                {% if reals is not empty %}
                 <li class="nav-item">
                     <a href="{{ path('realization') }}" class="nav-link navhead">
                         Realisation
                     </a>
                 </li>
+                {% endif %}
 
                 <li class="nav-item">
                     <a href="{{ path('about') }}" class="nav-link navhead">

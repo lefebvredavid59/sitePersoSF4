@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Social{% endblock %}
+{% block title %}{{ parent() }} Nouveau lien social{% endblock %}
 
 {% block body %}
-    <h1>Create new Social</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Nouveau lien social</h1>
 
-    {{ include('social_admin/_form.html.twig') }}
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('social_admin_index') }}">back to list</a>
+                    {{ include('admin/site/social_admin/_form.html.twig') }}
+
+                    <div class="d-grid">
+                        <a href="{{ path('social_admin_index') }}" class="btn btn-outline-primary">Retour a la liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

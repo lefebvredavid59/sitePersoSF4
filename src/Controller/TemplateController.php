@@ -4,23 +4,26 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use App\Repository\CategBlogRepository;
+use App\Repository\RealisationRepository;
+use App\Repository\SocialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TemplateController extends AbstractController
 {
-    public function header(): Response
+    public function header(ArticleRepository $articleRepository, RealisationRepository $realisationRepository): Response
     {
         return $this->render('template/header.html.twig', [
-            'controller_name' => 'TemplateController',
+            'blogs' => $articleRepository->findAll(),
+            'reals' => $realisationRepository->findAll(),
         ]);
     }
 
-    public function footer(): Response
+    public function footer(SocialRepository $socialRepository): Response
     {
         return $this->render('template/footer.html.twig', [
-            'controller_name' => 'TemplateController',
+            'socials' => $socialRepository->findAll(),
         ]);
     }
 

@@ -70,3 +70,11 @@
   -webkit-text-fill-color: transparent;
   font-weight: 500;
 }
+
+.badgeTof {
+  transform: translate(-80%,-6%)!important;
+  background: linear-gradient(#ff0000, #3333cc);
+}
+.badgeTof:hover {
+  background: linear-gradient(#00ff11, #3333cc);
+}
