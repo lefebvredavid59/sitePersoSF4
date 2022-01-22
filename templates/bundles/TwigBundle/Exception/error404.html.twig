@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Erreur 404{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto">
+
+        <h1 class="navhead display-1 text-center" style="font-size: 70px">PAGE NON TROUVÉE</h1>
+
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-9">
+                <div class="card shadow-lg mt-3">
+                    <div class="card-body text-center">
+                        <p>La page demander n'existe pas.</p>
+                        <p>Si le probleme persiste n'esiter pas a me contacter sur le
+                            <a href="{{ path('contact') }}" class="linkart">formulaire</a> en choisissant "Signaler un bug".
+                        </p>
+                        Ou sinon
+                        <a href="{{ path('home') }}" class="linkart">retour à la page d'accueil</a>.
+                    </div>
+
+                </div>
+
+            </div>
+            {{ render(controller('App\\Controller\\TemplateController::categright')) }}
+
+        </div>
+    </div>
+
+{% endblock %}

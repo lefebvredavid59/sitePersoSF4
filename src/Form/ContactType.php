@@ -30,6 +30,7 @@ class ContactType extends AbstractType
                 'choices' => [
                     'Demande de devis' => 'Demande de devis',
                     'Demande de renseignement' => 'Demande de renseignement',
+                    'Signaler un bug' => 'Signaler un bug',
                 ],
                 'label' => 'Raison du contact'
             ])
