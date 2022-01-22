@@ -9,7 +9,7 @@
         <div class="row mt-3 justify-content-center align-items-center">
 
             {% for real in reals %}
-                <div class="col-lg-3 mb-4">
+                <div class="col-lg-3 mb-4 cardreal">
                     <div class="card border-0 shadow">
                         <img src="{{ asset('/uploads/real/' ~ real.picture ) }}"
                              class="imgReal card-img-top" alt="Image de projet {{ real.name }}">
@@ -19,8 +19,11 @@
                                 {{ real.content|raw }}
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent d-grid p-0">
-                            <a href="{{ real.link }}" target="_blank" class="btn btn-outline-primary">Le site</a>
+                        <div class="text-end">
+                            <a class="text-decoration-none linkart" href="{{ real.link }}">
+                                Voir le site
+                                <i class="fa-solid fa-arrow-up-right-from-square m-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
