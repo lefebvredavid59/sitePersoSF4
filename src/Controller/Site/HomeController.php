@@ -4,6 +4,7 @@ namespace App\Controller\Site;
 
 use App\Repository\ArticleRepository;
 use App\Repository\SiteRepository;
+use App\Repository\SocialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,10 +25,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/about", name="about")
      */
-    public function about(): Response
+    public function about(SocialRepository $socialRepository): Response
     {
         return $this->render('site/about/about.html.twig', [
-            'controller_name' => 'AboutController',
+            'socials' => $socialRepository->findAll(),
         ]);
     }
 

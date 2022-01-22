@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Social{% endblock %}
+
+{% block body %}
+    <h1>Create new Social</h1>
+
+    {{ include('social_admin/_form.html.twig') }}
+
+    <a href="{{ path('social_admin_index') }}">back to list</a>
+{% endblock %}

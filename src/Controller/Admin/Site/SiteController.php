@@ -23,7 +23,7 @@ class SiteController extends AbstractController
      */
     public function index(SiteRepository $siteRepository): Response
     {
-        return $this->render('admin/site/index.html.twig', [
+        return $this->render('admin/site/site_admin/index.html.twig', [
             'sites' => $siteRepository->findAll(),
         ]);
     }
@@ -44,7 +44,7 @@ class SiteController extends AbstractController
             return $this->redirectToRoute('site_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/site/new.html.twig', [
+        return $this->render('admin/site/site_admin/new.html.twig', [
             'site' => $site,
             'form' => $form->createView(),
         ]);
@@ -55,7 +55,7 @@ class SiteController extends AbstractController
      */
     public function show(Site $site): Response
     {
-        return $this->render('admin/site/show.html.twig', [
+        return $this->render('admin/site/site_admin/show.html.twig', [
             'site' => $site,
         ]);
     }
@@ -74,7 +74,7 @@ class SiteController extends AbstractController
             return $this->redirectToRoute('site_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/site/edit.html.twig', [
+        return $this->render('admin/site/site_admin/edit.html.twig', [
             'site' => $site,
             'form' => $form->createView(),
         ]);
