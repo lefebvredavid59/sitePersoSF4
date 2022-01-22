@@ -6,16 +6,14 @@
     <div class="container">
         <h1 class="navhead display-2 text-center">Nouvelle Catégorie Blog</h1>
 
-        <div class="col-6 mx-auto">
-            <div class="card">
-                <div class="card-body shadow-lg">
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-                    {{ include('admin/blog/article_admin/_form.html.twig') }}
+                {{ include('admin/blog/article_admin/_form.html.twig') }}
 
-                    <div class="d-grid">
-                        <a href="{{ path('article_admin_index') }}" class="btn btn-outline-primary">Retour a la
-                            liste</a>
-                    </div>
+                <div class="d-grid">
+                    <a href="{{ path('article_admin_index') }}" class="btn btn-outline-primary">Retour a la
+                        liste</a>
                 </div>
             </div>
         </div>

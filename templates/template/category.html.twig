@@ -4,10 +4,27 @@
         <ul class="list-group list-group-flush">
             <dt class="list-group-item text-center foottxt">Catégorie</dt>
             {% for categ in categs %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ path('blog_categ',{'slug': categ.slug}) }}" class="text-decoration-none text-dark">{{ categ.name }}</a>
-                <span class="badge badgeMe rounded-pill">{{ categ.articles.count }}</span>
-            </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ path('blog_categ',{'slug': categ.slug}) }}"
+                       class="text-decoration-none text-dark">{{ categ.name }}</a>
+                    <span class="badge badgeMe rounded-pill">{{ categ.articles.count }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="shadow-lg mt-3">
+        <ul class="list-group list-group-flush">
+            <dt class="list-group-item text-center foottxt">Article alléatoire</dt>
+            {% for article in randArt %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ path('blog_article',{'slug': article.slug}) }}"
+                       class="text-decoration-none text-dark">{{ article.title }}</a>
+                    <a class="text-decoration-none linkart" href="{{ path('blog_article',{'slug': article.slug}) }}">
+                        Lire
+                        <i class="fa-solid fa-greater-than fa-xs ms-1"></i>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     </div>

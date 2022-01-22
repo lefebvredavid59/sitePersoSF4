@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\VichUploaderBundle;
 
-class ArticleType extends AbstractType
+class ArticleUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,7 +19,11 @@ class ArticleType extends AbstractType
             ->add('title',TextType::class,[
                 'label'=> 'Titre de l\'article :'
             ])
-            ->add('picture', FileType::class,array('data_class'=> null, 'label' => 'Image'))
+            ->add('picture', FileType::class,[
+                'required' => false,
+                'data_class'=> null,
+                'label' => 'Image'
+            ])
             ->add('movie',TextType::class,[
                 'label'=> 'Video Youtube :',
                 'required'=>false,

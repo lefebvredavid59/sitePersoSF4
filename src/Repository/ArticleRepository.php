@@ -52,6 +52,15 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function articleRand($numb)
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('RAND()')
+            ->setMaxResults($numb)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

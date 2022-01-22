@@ -27,9 +27,24 @@
                             <td>{{ article.created|date('d/m/Y') }}</td>
                             <td>{{ article.title }}</td>
                             <td>{{ article.slug }}</td>
-                            <td>{{ article.picture }}</td>
-                            <td>{{ article.movie }}</td>
-                            <td>{{ article.content }}</td>
+                            <td class="text-center">
+                                {% if article.picture is not empty %}
+                                    <a class="text-decoration-none"
+                                       href="{{ asset('uploads/articles/' ~ article.picture ) }}" target="_blank">
+                                        <i class="fa-solid fa-eye text-success"></i>
+                                    </a>
+                                {% else %}
+                                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if article.movie is not empty %}
+                                    {{ article.movie }}
+                                {% else %}
+                                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                {% endif %}
+                            </td>
+                            <td class="text-center"><a href="{{ path('blog_article',{'slug': article.slug }) }}" class="text-decoration-none text-dark">Lire <i class="fa-solid fa-greater-than text-success fa-xs ps-2"></i></a></td>
                             <td><a href="{{ path('article_admin_show', {'id': article.id}) }}">Voir</a></td>
                             <td><a href="{{ path('article_admin_edit', {'id': article.id}) }}">Modifier</a></td>
                         </tr>

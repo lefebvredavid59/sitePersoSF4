@@ -4,6 +4,7 @@ namespace App\Controller\Admin\Blog;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Form\ArticleUpdateType;
 use App\Repository\ArticleRepository;
 use App\Service\UploadArticle;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,7 +75,7 @@ class ArticleAdminController extends AbstractController
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager,
                          UploadArticle $uploadArticle): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleUpdateType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
