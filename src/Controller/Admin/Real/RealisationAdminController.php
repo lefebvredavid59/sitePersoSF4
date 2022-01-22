@@ -4,7 +4,9 @@ namespace App\Controller\Admin\Real;
 
 use App\Entity\Realisation;
 use App\Form\RealisationType;
+use App\Form\RealisationUpdateType;
 use App\Repository\RealisationRepository;
+use App\Service\UploadReal;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/realisation/admin")
+ * @Route("/realisation-admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class RealisationAdminController extends AbstractController
@@ -31,13 +33,18 @@ class RealisationAdminController extends AbstractController
     /**
      * @Route("/new", name="realisation_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UploadReal $uploadReal): Response
     {
         $realisation = new Realisation();
         $form = $this->createForm(RealisationType::class, $realisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($image = $form->get('picture')->getData()) {
+                $fileName = $uploadReal->upload($image, $realisation);
+                //Mets a jour l'entite
+                $realisation->setPicture($fileName);
+            }
             $entityManager->persist($realisation);
             $entityManager->flush();
 
@@ -53,7 +60,8 @@ class RealisationAdminController extends AbstractController
     /**
      * @Route("/{id}", name="realisation_admin_show", methods={"GET"})
      */
-    public function show(Realisation $realisation): Response
+    public
+    function show(Realisation $realisation): Response
     {
         return $this->render('admin/Real/realisation_admin/show.html.twig', [
             'realisation' => $realisation,
@@ -63,12 +71,22 @@ class RealisationAdminController extends AbstractController
     /**
      * @Route("/{id}/edit", name="realisation_admin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Realisation $realisation, EntityManagerInterface $entityManager): Response
+    public
+    function edit(Request $request, Realisation $realisation, UploadReal $uploadReal, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(RealisationType::class, $realisation);
+        $form = $this->createForm(RealisationUpdateType::class, $realisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($image = $form->get('picture')->getData()) {
+                // Supprimer l'image deja existante
+                if ($realisation->getPicture()) {
+                    $uploadReal->remove($realisation->getPicture());
+                }
+                $fileName = $uploadReal->upload($image, $realisation);
+                //Mets a jour l'entite
+                $realisation->setPicture($fileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('realisation_admin_index', [], Response::HTTP_SEE_OTHER);
@@ -83,9 +101,13 @@ class RealisationAdminController extends AbstractController
     /**
      * @Route("/{id}", name="realisation_admin_delete", methods={"POST"})
      */
-    public function delete(Request $request, Realisation $realisation, EntityManagerInterface $entityManager): Response
+    public
+    function delete(Request $request, Realisation $realisation, UploadReal $uploadReal, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$realisation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $realisation->getId(), $request->request->get('_token'))) {
+            if ($realisation->getPicture()) {
+                $uploadReal->remove($realisation->getPicture());
+            }
             $entityManager->remove($realisation);
             $entityManager->flush();
         }

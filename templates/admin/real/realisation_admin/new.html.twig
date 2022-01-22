@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Realisation{% endblock %}
+{% block title %}{{ parent() }} Nouvelle Réalisation{% endblock %}
 
 {% block body %}
-    <h1>Create new Realisation</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Nouvelle Réalisation</h1>
 
-    {{ include('realisation_admin/_form.html.twig') }}
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('realisation_admin_index') }}">back to list</a>
+                {{ include('admin/real/realisation_admin/_form.html.twig') }}
+
+                <div class="d-grid">
+                    <a href="{{ path('realisation_admin_index') }}" class="btn btn-outline-primary">Retour a la
+                        liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

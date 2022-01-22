@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Realisation{% endblock %}
+{% block title %}{{ parent() }} Edition site {{ realisation.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Realisation</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Edition site {{ realisation.name }}</h1>
 
-    {{ include('realisation_admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('realisation_admin_index') }}">back to list</a>
+                {{ include('admin/real/realisation_admin/_form.html.twig', {'button_label': 'Mis a jour'}) }}
 
-    {{ include('realisation_admin/_delete_form.html.twig') }}
+                <div class="d-grid">
+                    <a href="{{ path('realisation_admin_index') }}" class="btn btn-outline-primary">Retour à la
+                        liste</a>
+                </div>
+
+                {{ include('admin/real/realisation_admin/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

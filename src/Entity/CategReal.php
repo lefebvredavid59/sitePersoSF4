@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategRealRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -28,6 +30,16 @@ class CategReal
      * @ORM\Column(type="string", length=128,unique=true)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Realisation::class, mappedBy="category", orphanRemoval=true)
+     */
+    private $realisations;
+
+    public function __construct()
+    {
+        $this->realisations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -56,5 +68,40 @@ class CategReal
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Realisation[]
+     */
+    public function getRealisations(): Collection
+    {
+        return $this->realisations;
+    }
+
+    public function addRealisation(Realisation $realisation): self
+    {
+        if (!$this->realisations->contains($realisation)) {
+            $this->realisations[] = $realisation;
+            $realisation->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRealisation(Realisation $realisation): self
+    {
+        if ($this->realisations->removeElement($realisation)) {
+            // set the owning side to null (unless already changed)
+            if ($realisation->getCategory() === $this) {
+                $realisation->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

@@ -44,6 +44,12 @@ class Realisation
      */
     private $link;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategReal::class, inversedBy="realisations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +111,18 @@ class Realisation
     public function setLink(?string $link): self
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getCategory(): ?CategReal
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CategReal $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

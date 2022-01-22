@@ -1,5 +1,32 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.title,
+        {'attr': {'class':'form-control','placeholder': 'Titre'}}) }}
+    {{ form_label(form.title) }}
+</div>
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.picture,
+        {'attr': {'class':'form-control'}}) }}
+</div>
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.movie,
+        {'attr': {'class':'form-control','placeholder': 'Lien video'}}) }}
+    {{ form_label(form.movie) }}
+</div>
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.content,
+        {'attr': {'class':'form-control'}}) }}
+</div>
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.category,
+        {'attr': {'class':'form-control','placeholder': 'Categorie'}}) }}
+    {{ form_label(form.category) }}
+</div>
 
 <div class="d-grid my-3">
     <button class="btn btn-outline-success">{{ button_label|default('Enregistrer') }}</button>

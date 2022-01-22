@@ -33,7 +33,7 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/new", name="article_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,
+    public function new(Request       $request, EntityManagerInterface $entityManager,
                         UploadArticle $uploadArticle): Response
     {
         $article = new Article();
@@ -42,10 +42,10 @@ class ArticleAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setCreated(new \DateTime('now'));
-            if ($image = $form->get('picture')->getData()){
-                $fileName = $uploadArticle->upload($image,$article);
+            if ($image = $form->get('picture')->getData()) {
+                $fileName = $uploadArticle->upload($image, $article);
                 //Mets a jour l'entite
-                    $article->setPicture($fileName);
+                $article->setPicture($fileName);
             }
             $entityManager->persist($article);
             $entityManager->flush();
@@ -72,7 +72,7 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/{id}/edit", name="article_admin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager,
+    public function edit(Request       $request, Article $article, EntityManagerInterface $entityManager,
                          UploadArticle $uploadArticle): Response
     {
         $form = $this->createForm(ArticleUpdateType::class, $article);
@@ -84,7 +84,7 @@ class ArticleAdminController extends AbstractController
                 if ($article->getPicture()) {
                     $uploadArticle->remove($article->getPicture());
                 }
-                $fileName = $uploadArticle->upload($image,$article);
+                $fileName = $uploadArticle->upload($image, $article);
                 //Mets a jour l'entite
                 $article->setPicture($fileName);
             }
@@ -102,11 +102,13 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/{id}", name="article_admin_delete", methods={"POST"})
      */
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager,
+    public function delete(Request       $request, Article $article, EntityManagerInterface $entityManager,
                            UploadArticle $uploadArticle): Response
     {
         if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
-            $uploadArticle->remove($article->getPicture());
+            if ($article->getPicture()) {
+                $uploadArticle->remove($article->getPicture());
+            }
             $entityManager->remove($article);
             $entityManager->flush();
         }
