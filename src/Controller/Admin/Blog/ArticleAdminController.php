@@ -3,8 +3,8 @@
 namespace App\Controller\Admin\Blog;
 
 use App\Entity\Article;
-use App\Form\ArticleType;
-use App\Form\ArticleUpdateType;
+use App\Form\Admin\ArticleType;
+use App\Form\Admin\ArticleUpdateType;
 use App\Repository\ArticleRepository;
 use App\Service\UploadArticle;
 use Doctrine\ORM\EntityManagerInterface;

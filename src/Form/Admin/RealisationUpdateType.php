@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Realisation;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RealisationType extends AbstractType
+class RealisationUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -20,7 +20,9 @@ class RealisationType extends AbstractType
                 'label'=> 'Titre de la réalisation:'
             ])
             ->add('picture', FileType::class,[
-                'data_class'=> null, 'label' => 'Image'
+                'required' => false,
+                'data_class'=> null,
+                'label' => 'Image'
             ])
             ->add('content', CKEditorType::class)
             ->add('link',UrlType::class)

@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,28 +23,6 @@ class UserAdminController extends AbstractController
     {
         return $this->render('admin/site/user_admin/index.html.twig', [
             'users' => $userRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="user_admin_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user_admin_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin/site/user_admin/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
         ]);
     }
 

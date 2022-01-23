@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Real;
 
 use App\Entity\CategReal;
-use App\Form\CategRealType;
+use App\Form\Admin\CategRealType;
 use App\Repository\CategRealRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

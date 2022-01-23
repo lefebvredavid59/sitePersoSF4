@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\Site;
-use App\Form\SiteType;
+use App\Form\Admin\SiteType;
 use App\Repository\SiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Blog;
 
 use App\Entity\CategBlog;
-use App\Form\CategBlogType;
+use App\Form\Admin\CategBlogType;
 use App\Repository\CategBlogRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

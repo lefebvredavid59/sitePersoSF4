@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\Social;
-use App\Form\SocialType;
+use App\Form\Admin\SocialType;
 use App\Repository\SocialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
