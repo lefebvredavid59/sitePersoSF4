@@ -4,6 +4,7 @@ namespace App\Controller\Site;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\AboutRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\SiteRepository;
 use App\Repository\SocialRepository;
@@ -31,10 +32,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/about", name="about")
      */
-    public function about(SocialRepository $socialRepository): Response
+    public function about(SocialRepository $socialRepository, AboutRepository $aboutRepository): Response
     {
         return $this->render('site/about/about.html.twig', [
             'socials' => $socialRepository->findAll(),
+            'moi' => $aboutRepository->findAll(),
         ]);
     }
 
