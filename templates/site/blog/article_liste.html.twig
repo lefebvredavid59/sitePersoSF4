@@ -14,13 +14,9 @@
             <p class="blockquote-footer mt-1">
                 {{ article.category.name }}
             </p>
-            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-                veniam
-                exercitationem
-                expedita
-                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni
-                pariatur quos
-                perspiciatis atque eveniet unde.</p>
+            <p class="my-3">
+                {{ article.content [:300] |raw }}....
+            </p>
             <div class="text-end">
                 <a class="text-decoration-none linkart" href="{{ path('blog_article',{'slug': article.slug}) }}">
                     Lire l'article
