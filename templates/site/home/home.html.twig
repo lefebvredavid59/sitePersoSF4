@@ -24,10 +24,12 @@
         </div>
     </div>
 
-    <div class="container my-5" style="max-width: 1000px">
-        <h1 class="navhead display-2">Derniers articles</h1>
+    {% if articles is not empty %}
+        <div class="container my-5" style="max-width: 1000px">
+            <h1 class="navhead display-2">Derniers articles</h1>
 
             {{ include('site/blog/article_liste.html.twig') }}
 
-    </div>
+        </div>
+    {% endif %}
 {% endblock %}
