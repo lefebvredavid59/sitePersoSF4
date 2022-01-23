@@ -1,26 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}About{% endblock %}
+{% block title %}{{ parent() }} Présentation{% endblock %}
 
 {% block body %}
-    <h1>About</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Présentation</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ about.id }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ about.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('about_admin_index') }}">back to list</a>
+                <table class="table text-center">
+                    <tbody>
+                    <tr>
+                        <th>Présentation</th>
+                        <td>{{ about.content|raw }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="d-grid">
 
-    <a href="{{ path('about_admin_edit', {'id': about.id}) }}">edit</a>
+                    <a href="{{ path('about_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la liste</a>
 
-    {{ include('about_admin/_delete_form.html.twig') }}
+                    <a href="{{ path('about_admin_edit', {'id': about.id}) }}" class="btn btn-outline-secondary">Modifier</a>
+
+                    {{ include('admin/site/about_admin/_delete_form.html.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

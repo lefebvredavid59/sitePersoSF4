@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin\Site;
 
 use App\Entity\About;
 use App\Form\AboutType;
 use App\Repository\AboutRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/about/admin")
+ * @Route("/about-admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AboutAdminController extends AbstractController
 {
@@ -21,7 +23,7 @@ class AboutAdminController extends AbstractController
      */
     public function index(AboutRepository $aboutRepository): Response
     {
-        return $this->render('about_admin/index.html.twig', [
+        return $this->render('admin/site/about_admin/index.html.twig', [
             'abouts' => $aboutRepository->findAll(),
         ]);
     }
@@ -42,7 +44,7 @@ class AboutAdminController extends AbstractController
             return $this->redirectToRoute('about_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('about_admin/new.html.twig', [
+        return $this->render('admin/site/about_admin/new.html.twig', [
             'about' => $about,
             'form' => $form->createView(),
         ]);
@@ -53,7 +55,7 @@ class AboutAdminController extends AbstractController
      */
     public function show(About $about): Response
     {
-        return $this->render('about_admin/show.html.twig', [
+        return $this->render('admin/site/about_admin/show.html.twig', [
             'about' => $about,
         ]);
     }
@@ -72,7 +74,7 @@ class AboutAdminController extends AbstractController
             return $this->redirectToRoute('about_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('about_admin/edit.html.twig', [
+        return $this->render('admin/site/about_admin/edit.html.twig', [
             'about' => $about,
             'form' => $form->createView(),
         ]);

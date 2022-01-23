@@ -1,35 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}About index{% endblock %}
+{% block title %}{{ parent() }} Gestion présentation{% endblock %}
 
 {% block body %}
-    <h1>About index</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion présentation</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for about in abouts %}
-            <tr>
-                <td>{{ about.id }}</td>
-                <td>{{ about.content }}</td>
-                <td>
-                    <a href="{{ path('about_admin_show', {'id': about.id}) }}">show</a>
-                    <a href="{{ path('about_admin_edit', {'id': about.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body shadow-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Content</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for about in abouts %}
+                        <tr>
+                            <td>{{ about.content|raw }}</td>
+                            <td>
+                                <a href="{{ path('about_admin_show', {'id': about.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('about_admin_edit', {'id': about.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="text-center">
+                            <td colspan="3">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="d-grid">
+                    <a href="{{ path('about_admin_new') }}" class="btn btn-outline-info">Créer un nouveau</a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('about_admin_new') }}">Create new</a>
+    </div>
 {% endblock %}
