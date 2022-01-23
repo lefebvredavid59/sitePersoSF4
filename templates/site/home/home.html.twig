@@ -16,10 +16,14 @@
                 {% for dispo in dispos %}
                     {% if dispo.available == true %}
                         <h1 class="display-1 neonVert">Actuellement disponible</h1>
+                        <div class="mt-3 display-2">
+                            <a href="{{ path('contact') }}" class="mt-3 text-decoration-none linkCont">Me contacter</a>
+                        </div>
                     {% else %}
                         <h1 class="display-1 neonRouge">Actuellement indisponible</h1>
                     {% endif %}
                 {% endfor %}
+
             </div>
         </div>
     </div>

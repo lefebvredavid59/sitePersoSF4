@@ -1,80 +1,96 @@
 .navhead {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 25px;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 
 .navlog {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #00ff00 20%, #303030 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 25px;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #00ff00 20%, #303030 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 
 .navdeco {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #020202 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 25px;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #020202 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 
 .foottxt {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .badgeMe {
-  background: linear-gradient(#ff0000, #3333cc);
+    background: linear-gradient(#ff0000, #3333cc);
 }
 
 .sucessAle {
-  background: linear-gradient(#00ff00, #303030);
+    background: linear-gradient(#00ff00, #303030);
 }
 
 .picsme {
-  border-radius: 50px;
+    border-radius: 50px;
 }
 
 .imgBlog {
-  height: 170px;
-  width: 390px;
-  border-radius: 50px;
+    height: 170px;
+    width: 390px;
+    border-radius: 50px;
 }
 
 .titleBlog {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 25px;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 
 .linkart {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 500;
-  font-size: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+    font-size: 15px;
 }
+
 .linkart:hover {
-  text-transform: uppercase;
-  background: linear-gradient(to top, #00ff11 20%, #3333cc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 500;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #00ff11 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+}
+
+.linkCont {
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ff0000 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.linkCont:hover {
+    text-transform: uppercase;
+    background: linear-gradient(to top, #00ff11 20%, #3333cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .badgeTof {
-  transform: translate(-80%,-6%)!important;
-  background: linear-gradient(#ff0000, #3333cc);
+    transform: translate(-80%, -6%) !important;
+    background: linear-gradient(#ff0000, #3333cc);
 }
+
 .badgeTof:hover {
-  background: linear-gradient(#00ff11, #3333cc);
+    background: linear-gradient(#00ff11, #3333cc);
 }
