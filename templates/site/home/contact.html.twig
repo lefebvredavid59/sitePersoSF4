@@ -28,13 +28,13 @@
 
                                 <div class="form-floating mb-3">
                                     {{ form_widget(contactform.Contact_Name,
-                                        {'attr': {'class':'form-control','placeholder': 'Votre nom'}}) }}
+                                        {'attr': {'placeholder': 'Votre nom'}}) }}
                                     {{ form_label(contactform.Contact_Name) }}
                                 </div>
 
                                 <div class="form-floating mb-3">
                                     {{ form_widget(contactform.Email_Contact,
-                                        {'attr': {'class':'form-control','placeholder': 'Votre email'}}) }}
+                                        {'attr': {'placeholder': 'Votre email'}}) }}
                                     {{ form_label(contactform.Email_Contact) }}
                                 </div>
 
@@ -46,15 +46,15 @@
 
                                 <div class="form-floating mb-3">
                                     {{ form_widget(contactform.Message_Contact,
-                                        {'attr': {'class':'form-control','placeholder': 'Sujet du contact'}}) }}
+                                        {'attr': {'style':'height: 200px'}}) }}
                                     {{ form_label(contactform.Message_Contact) }}
                                 </div>
 
                                 <div class="d-grid">
-                                <button class="btn text-decoration-none linkart" type="submit">
-                                    Envoyer l'email
-                                    <i class="fa-regular fa-paper-plane fa-xs ms-1"></i>
-                                </button>
+                                    <button class="btn text-decoration-none linkart" type="submit">
+                                        Envoyer l'email
+                                        <i class="fa-regular fa-paper-plane fa-xs ms-1"></i>
+                                    </button>
                                 </div>
                                 {{ form_end(contactform) }}
                                 <!-- End of contact form -->

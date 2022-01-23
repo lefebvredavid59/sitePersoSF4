@@ -36,7 +36,9 @@ class ContactType extends AbstractType
             ])
             ->add('Message_Contact', TextareaType::class, [
                 'required' => true,
-                'attr' => ['minlength' => 4],
+                'attr' => [
+                    'minlength' => 25,
+                ],
                     'label' => 'Votre message'
                 ]);
     }
