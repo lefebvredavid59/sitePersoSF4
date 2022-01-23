@@ -40,10 +40,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex(
-     *     pattern= "/[a-zA-Z0-9-_]{3,20}$/",
-     *     match= false,
-     * )
      */
     private $pseudo;
 
