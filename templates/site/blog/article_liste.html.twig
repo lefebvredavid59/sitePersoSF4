@@ -14,10 +14,10 @@
             <p class="blockquote-footer mt-1">
                 {{ article.category.name }}
             </p>
-            <p class="my-3">
+
                 {{ article.content [:250] |raw }}
-            </p>
-            <div class="text-end">
+
+            <div class="text-end mt-3">
                 <a class="text-decoration-none linkart" href="{{ path('blog_article',{'slug': article.slug}) }}">
                     Lire l'article
                     <i class="fa-solid fa-greater-than fa-xs ms-1"></i>
