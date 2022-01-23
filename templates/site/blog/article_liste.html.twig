@@ -15,7 +15,7 @@
                 {{ article.category.name }}
             </p>
             <p class="my-3">
-                {{ article.content [:300] |raw }}....
+                {{ article.content [:250] |raw }}....
             </p>
             <div class="text-end">
                 <a class="text-decoration-none linkart" href="{{ path('blog_article',{'slug': article.slug}) }}">
