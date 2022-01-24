@@ -13,6 +13,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/picture/logo.png') }}">
     <link rel="icon" type="image/ico" sizes="16x16" href="{{ asset('assets/picture/logo.png') }}">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FEN6K830W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0FEN6K830W');
+    </script>
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
