@@ -3,7 +3,10 @@
 {% block title %}Hello TestapiController!{% endblock %}
 
 {% block body %}
-    {% for cat in categs %}
-        <p>{{ cat.title }}</p>
-    {% endfor %}
+    <div class="container">
+        {% for categ in categs %}
+            <p>{{ categ.title }}</p>
+        {% endfor %}
+    </div>
+
 {% endblock %}
