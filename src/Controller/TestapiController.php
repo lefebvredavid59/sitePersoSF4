@@ -23,7 +23,7 @@ class TestapiController extends AbstractController
     {
         $response = $this->client->request(
             'GET',
-            'https://lefebvredavid.fr/api/categ_blogs', [
+            'https://lefebvredavid.fr/api/categ_blogs.json', [
                 'headers' => [
                     'Accept' => 'application/json',
                 ]
