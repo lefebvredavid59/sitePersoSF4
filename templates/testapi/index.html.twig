@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestapiController!{% endblock %}
+
+{% block body %}
+    {% for cat in categs %}
+        <p>{{ cat.title }}</p>
+    {% endfor %}
+{% endblock %}
