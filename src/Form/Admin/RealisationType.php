@@ -19,8 +19,10 @@ class RealisationType extends AbstractType
             ->add('name',TextType::class,[
                 'label'=> 'Titre de la réalisation:'
             ])
-            ->add('picture', FileType::class,[
-                'data_class'=> null, 'label' => 'Image'
+            ->add('picture',FileType::class,[
+                'mapped' => false,
+                'required'=> false,
+                'label' => 'Image Realisation'
             ])
             ->add('content', CKEditorType::class)
             ->add('link',UrlType::class)

@@ -20,10 +20,10 @@ class UploadArticle
     /**
      * $fileName = $this->uploader->upload($file);
      */
-    public function upload(UploadedFile $image, Article $Article)
+    public function upload(UploadedFile $image)
     {
         // genere le nom de l'image
-        $fileName = $Article->getTitle().'.'.$image->guessExtension();
+        $fileName = uniqid().'.'.$image->guessExtension();
         // Deplace l'image
         $image->move($this->uploadDirArticle, $fileName);
 

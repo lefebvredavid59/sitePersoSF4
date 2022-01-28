@@ -50,6 +50,11 @@
                                     {{ form_label(contactform.Message_Contact) }}
                                 </div>
 
+                                <div class="form-check mb-3">
+                                    {{ form_widget(contactform.agreeTerms,
+                                        {'attr': {'class':'form-check-input'}}) }}
+                                </div>
+
                                 <div class="d-grid">
                                     <button class="btn text-decoration-none linkart" type="submit">
                                         Envoyer l'email

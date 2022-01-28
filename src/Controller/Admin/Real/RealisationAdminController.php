@@ -4,7 +4,6 @@ namespace App\Controller\Admin\Real;
 
 use App\Entity\Realisation;
 use App\Form\Admin\RealisationType;
-use App\Form\Admin\RealisationUpdateType;
 use App\Repository\RealisationRepository;
 use App\Service\UploadReal;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,7 +40,7 @@ class RealisationAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($image = $form->get('picture')->getData()) {
-                $fileName = $uploadReal->upload($image, $realisation);
+                $fileName = $uploadReal->upload($image);
                 //Mets a jour l'entite
                 $realisation->setPicture($fileName);
             }
@@ -74,7 +73,7 @@ class RealisationAdminController extends AbstractController
     public
     function edit(Request $request, Realisation $realisation, UploadReal $uploadReal, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(RealisationUpdateType::class, $realisation);
+        $form = $this->createForm(RealisationType::class, $realisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +82,7 @@ class RealisationAdminController extends AbstractController
                 if ($realisation->getPicture()) {
                     $uploadReal->remove($realisation->getPicture());
                 }
-                $fileName = $uploadReal->upload($image, $realisation);
+                $fileName = $uploadReal->upload($image);
                 //Mets a jour l'entite
                 $realisation->setPicture($fileName);
             }

@@ -18,8 +18,10 @@ class ArticleType extends AbstractType
             ->add('title',TextType::class,[
                 'label'=> 'Titre de l\'article :'
             ])
-            ->add('picture', FileType::class,[
-                'data_class'=> null, 'label' => 'Image'
+            ->add('picture',FileType::class,[
+                'mapped' => false,
+                'required'=> false,
+                'label' => 'Image article'
             ])
             ->add('movie',TextType::class,[
                 'label'=> 'Video Youtube :',

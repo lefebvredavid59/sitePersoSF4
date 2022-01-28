@@ -4,7 +4,6 @@ namespace App\Controller\Admin\Blog;
 
 use App\Entity\Article;
 use App\Form\Admin\ArticleType;
-use App\Form\Admin\ArticleUpdateType;
 use App\Repository\ArticleRepository;
 use App\Service\UploadArticle;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,7 +42,7 @@ class ArticleAdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setCreated(new \DateTime('now'));
             if ($image = $form->get('picture')->getData()) {
-                $fileName = $uploadArticle->upload($image, $article);
+                $fileName = $uploadArticle->upload($image);
                 //Mets a jour l'entite
                 $article->setPicture($fileName);
             }
@@ -75,7 +74,7 @@ class ArticleAdminController extends AbstractController
     public function edit(Request       $request, Article $article, EntityManagerInterface $entityManager,
                          UploadArticle $uploadArticle): Response
     {
-        $form = $this->createForm(ArticleUpdateType::class, $article);
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,7 +83,7 @@ class ArticleAdminController extends AbstractController
                 if ($article->getPicture()) {
                     $uploadArticle->remove($article->getPicture());
                 }
-                $fileName = $uploadArticle->upload($image, $article);
+                $fileName = $uploadArticle->upload($image);
                 //Mets a jour l'entite
                 $article->setPicture($fileName);
             }

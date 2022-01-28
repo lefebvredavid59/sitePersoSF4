@@ -20,10 +20,10 @@ class UploadReal
     /**
      * $fileName = $this->uploader->upload($file);
      */
-    public function upload(UploadedFile $image, Realisation $realisation)
+    public function upload(UploadedFile $image)
     {
         // genere le nom de l'image
-        $fileName = $realisation->getName().'.'.$image->guessExtension();
+        $fileName = uniqid().'.'.$image->guessExtension();
         // Deplace l'image
         $image->move($this->uploadDirReal, $fileName);
 
