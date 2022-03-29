@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
+use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -43,14 +45,11 @@ class ContactType extends AbstractType
                 ],
                 'label' => 'Votre message'
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'label' => 'Je suis pas un robot',
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez me cocher.',
-                    ]),
-                ],
+            ->add('captcha', RecaptchaType::class, [
+                // You can use RecaptchaSubmitType
+                // "groups" option is not mandatory
+                'required' => true,
+                'constraints' => new Recaptcha2(),
             ]);
     }
 

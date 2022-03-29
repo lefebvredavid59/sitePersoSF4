@@ -51,8 +51,7 @@
                                 </div>
 
                                 <div class="form-check mb-3">
-                                    {{ form_widget(contactform.agreeTerms,
-                                        {'attr': {'class':'form-check-input'}}) }}
+                                    {{ form_widget(contactform.captcha) }}
                                 </div>
 
                                 <div class="d-grid">
@@ -91,4 +90,8 @@
         </div>
     </div>
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
 
+{% endblock %}

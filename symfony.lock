@@ -16,6 +16,18 @@
     "beberlei/doctrineextensions": {
         "version": "v1.3.0"
     },
+    "beelab/recaptcha2-bundle": {
+        "version": "2.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "ad714d23c3c754619d9f2e1bd7b621c0d6185165"
+        },
+        "files": [
+            "./config/packages/beelab_recaptcha2.yaml"
+        ]
+    },
     "behat/transliterator": {
         "version": "v1.3.0"
     },
@@ -122,6 +134,18 @@
     },
     "gedmo/doctrine-extensions": {
         "version": "v3.5.0"
+    },
+    "google/recaptcha": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "e5a4aa21f2e98d7440ae9aab6b56e307f99dd084"
+        },
+        "files": [
+            "./config/packages/google_recaptcha.yaml"
+        ]
     },
     "helios-ag/fm-elfinder-bundle": {
         "version": "12.1",
