@@ -46,8 +46,14 @@ class CollectionSubcategory
      */
     private $picture;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CollectionFamily::class, mappedBy="subcategory", orphanRemoval=true)
+     */
+    private $collectionFamilies;
+
     public function __construct()
     {
+        $this->collectionFamilies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,5 +112,35 @@ class CollectionSubcategory
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection|CollectionFamily[]
+     */
+    public function getCollectionFamilies(): Collection
+    {
+        return $this->collectionFamilies;
+    }
+
+    public function addCollectionFamily(CollectionFamily $collectionFamily): self
+    {
+        if (!$this->collectionFamilies->contains($collectionFamily)) {
+            $this->collectionFamilies[] = $collectionFamily;
+            $collectionFamily->setSubcategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollectionFamily(CollectionFamily $collectionFamily): self
+    {
+        if ($this->collectionFamilies->removeElement($collectionFamily)) {
+            // set the owning side to null (unless already changed)
+            if ($collectionFamily->getSubcategory() === $this) {
+                $collectionFamily->setSubcategory(null);
+            }
+        }
+
+        return $this;
     }
 }

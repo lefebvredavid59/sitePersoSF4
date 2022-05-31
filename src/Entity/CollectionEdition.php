@@ -40,6 +40,12 @@ class CollectionEdition
      */
     private $picture;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CollectionFamily::class, inversedBy="collectionEditions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $family;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,5 +90,17 @@ class CollectionEdition
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getFamily(): ?CollectionFamily
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?CollectionFamily $family): self
+    {
+        $this->family = $family;
+
+        return $this;
     }
 }

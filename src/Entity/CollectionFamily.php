@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CollectionFamilyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -36,6 +38,22 @@ class CollectionFamily
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CollectionSubcategory::class, inversedBy="collectionFamilies")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subcategory;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CollectionEdition::class, mappedBy="family", orphanRemoval=true)
+     */
+    private $collectionEditions;
+
+    public function __construct()
+    {
+        $this->collectionEditions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +92,48 @@ class CollectionFamily
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getSubcategory(): ?CollectionSubcategory
+    {
+        return $this->subcategory;
+    }
+
+    public function setSubcategory(?CollectionSubcategory $subcategory): self
+    {
+        $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CollectionEdition[]
+     */
+    public function getCollectionEditions(): Collection
+    {
+        return $this->collectionEditions;
+    }
+
+    public function addCollectionEdition(CollectionEdition $collectionEdition): self
+    {
+        if (!$this->collectionEditions->contains($collectionEdition)) {
+            $this->collectionEditions[] = $collectionEdition;
+            $collectionEdition->setFamily($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollectionEdition(CollectionEdition $collectionEdition): self
+    {
+        if ($this->collectionEditions->removeElement($collectionEdition)) {
+            // set the owning side to null (unless already changed)
+            if ($collectionEdition->getFamily() === $this) {
+                $collectionEdition->setFamily(null);
+            }
+        }
 
         return $this;
     }
