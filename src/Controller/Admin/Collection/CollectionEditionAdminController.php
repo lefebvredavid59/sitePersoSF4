@@ -3,16 +3,19 @@
 namespace App\Controller\Admin\Collection;
 
 use App\Entity\CollectionEdition;
-use App\Form\Admin\CollectionEditionType;
+use App\Form\Admin\Collection\CollectionEditionType;
 use App\Repository\CollectionEditionRepository;
+use App\Service\UploadCollectionEdition;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/collection-edition-admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 class CollectionEditionAdminController extends AbstractController
 {
@@ -29,13 +32,18 @@ class CollectionEditionAdminController extends AbstractController
     /**
      * @Route("/new", name="collection_edition_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UploadCollectionEdition $uploadCollectionEdition): Response
     {
         $collectionEdition = new CollectionEdition();
         $form = $this->createForm(CollectionEditionType::class, $collectionEdition);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($image = $form->get('picture')->getData()) {
+                $fileName = $uploadCollectionEdition->upload($image);
+                //Mets a jour l'entite
+                $collectionEdition->setPicture($fileName);
+            }
             $entityManager->persist($collectionEdition);
             $entityManager->flush();
 
@@ -61,12 +69,21 @@ class CollectionEditionAdminController extends AbstractController
     /**
      * @Route("/{id}/edit", name="collection_edition_admin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager, UploadCollectionEdition $uploadCollectionEdition): Response
     {
         $form = $this->createForm(CollectionEditionType::class, $collectionEdition);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($image = $form->get('picture')->getData()) {
+                // Supprimer l'image deja existante
+                if ($collectionEdition->getPicture()) {
+                    $uploadCollectionEdition->remove($collectionEdition->getPicture());
+                }
+                $fileName = $uploadCollectionEdition->upload($image);
+                //Mets a jour l'entite
+                $collectionEdition->setPicture($fileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('collection_edition_admin_index', [], Response::HTTP_SEE_OTHER);
@@ -81,9 +98,12 @@ class CollectionEditionAdminController extends AbstractController
     /**
      * @Route("/{id}", name="collection_edition_admin_delete", methods={"POST"})
      */
-    public function delete(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager, UploadCollectionEdition $uploadCollectionEdition): Response
     {
         if ($this->isCsrfTokenValid('delete'.$collectionEdition->getId(), $request->request->get('_token'))) {
+            if ($collectionEdition->getPicture()) {
+                $uploadCollectionEdition->remove($collectionEdition->getPicture());
+            }
             $entityManager->remove($collectionEdition);
             $entityManager->flush();
         }

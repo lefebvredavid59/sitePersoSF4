@@ -7,13 +7,13 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
-class UploadCollectionEdition
+class UploadCollectionFamily
 {
-    private $uploadCollectionEdition;
+    private $uploadCollectionFamily;
 
-    public function __construct($uploadCollectionEdition)
+    public function __construct($uploadCollectionFamily)
     {
-        $this->uploadCollectionEdition = $uploadCollectionEdition;
+        $this->UploadCollectionFamily = $uploadCollectionFamily;
     }
 
     /**
@@ -24,7 +24,7 @@ class UploadCollectionEdition
         // genere le nom de l'image
         $fileName = uniqid().'.'.$image->guessExtension();
         // Deplace l'image
-        $image->move($this->uploadCollectionEdition, $fileName);
+        $image->move($this->UploadCollectionFamily, $fileName);
 
         return $fileName;
     }
@@ -33,7 +33,7 @@ class UploadCollectionEdition
     {
         $fs = new Filesystem();
         // Supprimer le fichier
-        $file = $this->uploadCollectionEdition.'/'.$fileName;
+        $file = $this->UploadCollectionFamily.'/'.$fileName;
 
         if ($fs->exists($file)){
             $fs->remove($file);

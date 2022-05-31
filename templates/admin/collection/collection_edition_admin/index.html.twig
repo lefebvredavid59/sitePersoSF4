@@ -25,10 +25,10 @@
                             <td>{{ collection_edition.slug }}</td>
                             <td>{{ collection_edition.picture }}</td>
                             <td>
-                                <a href="{{ path('collection_edition_admin_show', {'id': collection_edition.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('collection_edition_admin_show', {'id': collection_edition.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('collection_edition_admin_edit', {'id': collection_edition.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('collection_edition_admin_edit', {'id': collection_edition.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

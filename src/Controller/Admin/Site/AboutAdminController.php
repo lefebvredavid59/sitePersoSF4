@@ -3,13 +3,13 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\About;
-use App\Form\Admin\AboutType;
+use App\Form\Admin\Site\AboutType;
 use App\Repository\AboutRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**

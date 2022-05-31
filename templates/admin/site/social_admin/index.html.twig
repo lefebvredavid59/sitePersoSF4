@@ -27,10 +27,10 @@
                                 <a class="text-decoration-none" href="{{ social.link }}" target="_blank">Lien</a>
                             </td>
                             <td>
-                                <a href="{{ path('social_admin_show', {'id': social.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('social_admin_show', {'id': social.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('social_admin_edit', {'id': social.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('social_admin_edit', {'id': social.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

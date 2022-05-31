@@ -3,18 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\CollectionSubcategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\CollectionFamilyRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass=CollectionSubcategoryRepository::class)
+ * @ORM\Entity(repositoryClass=CollectionFamilyRepository::class)
  */
-class CollectionSubcategory
+class CollectionFamily
 {
     /**
      * @ORM\Id
@@ -35,20 +33,9 @@ class CollectionSubcategory
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CollectionCategory::class, inversedBy="collectionSubcategories")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
-
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
-
-    public function __construct()
-    {
-    }
 
     public function getId(): ?int
     {
@@ -79,18 +66,6 @@ class CollectionSubcategory
         return $this;
     }
 
-    public function getCategory(): ?CollectionCategory
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?CollectionCategory $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -101,10 +76,5 @@ class CollectionSubcategory
         $this->picture = $picture;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
     }
 }

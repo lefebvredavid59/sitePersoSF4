@@ -8,7 +8,6 @@ use App\Repository\RealisationRepository;
 use App\Repository\SocialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class TemplateController extends AbstractController
 {

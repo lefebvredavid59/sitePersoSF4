@@ -45,8 +45,8 @@
                                 {% endif %}
                             </td>
                             <td class="text-center"><a href="{{ path('blog_article',{'slug': article.slug }) }}" class="text-decoration-none text-dark">Lire <i class="fa-solid fa-greater-than text-success fa-xs ps-2"></i></a></td>
-                            <td><a href="{{ path('article_admin_show', {'id': article.id}) }}">Voir</a></td>
-                            <td><a href="{{ path('article_admin_edit', {'id': article.id}) }}">Modifier</a></td>
+                            <td><a class="text-decoration-none" href="{{ path('article_admin_show', {'id': article.id}) }}">Voir</a></td>
+                            <td><a class="text-decoration-none" href="{{ path('article_admin_edit', {'id': article.id}) }}">Modifier</a></td>
                         </tr>
                     {% else %}
                         <tr class="text-center">

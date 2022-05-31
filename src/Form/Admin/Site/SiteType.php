@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Admin;
+namespace App\Form\Admin\Site;
 
 use App\Entity\Site;
 use Symfony\Component\Form\AbstractType;

@@ -3,16 +3,18 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\User;
-use App\Form\Admin\UserType;
+use App\Form\Admin\Site\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/user/admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 class UserAdminController extends AbstractController
 {

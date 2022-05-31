@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Site\Blog;
+namespace App\Controller\Blog;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;

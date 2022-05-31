@@ -3,13 +3,13 @@
 namespace App\Controller\Admin\Site;
 
 use App\Entity\Social;
-use App\Form\Admin\SocialType;
+use App\Form\Admin\Site\SocialType;
 use App\Repository\SocialRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**

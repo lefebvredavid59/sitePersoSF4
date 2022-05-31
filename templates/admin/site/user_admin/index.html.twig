@@ -29,10 +29,10 @@
                             <td>{{ user.lastCo ? user.lastCo|date('d-m-Y H:i:s') : '' }}</td>
                             <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
                             <td>
-                                <a href="{{ path('user_admin_show', {'id': user.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('user_admin_show', {'id': user.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('user_admin_edit', {'id': user.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('user_admin_edit', {'id': user.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

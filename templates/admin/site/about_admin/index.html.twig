@@ -21,10 +21,10 @@
                         <tr>
                             <td>{{ about.content|raw }}</td>
                             <td>
-                                <a href="{{ path('about_admin_show', {'id': about.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('about_admin_show', {'id': about.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('about_admin_edit', {'id': about.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('about_admin_edit', {'id': about.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

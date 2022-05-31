@@ -27,7 +27,7 @@
                             <td>{{ realisation.slug }}</td>
                             <td class="text-center">
                                 {% if realisation.picture is not empty %}
-                                    <a class="text-decoration-none"
+                                    <a class="text-decoration-none""
                                        href="{{ asset('uploads/real/') ~ realisation.picture }}" target="_blank">
                                         <i class="fa-solid fa-eye text-success"></i>
                                     </a>
@@ -37,15 +37,15 @@
                             </td>
                             <td>{{ realisation.content }}</td>
                             <td>
-                                <a href="{{ realisation.link }}" target="_blank">
+                                <a class="text-decoration-none" href="{{ realisation.link }}" target="_blank">
                                     <i class="fa-solid fa-arrow-up-right-from-square text-info"></i>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ path('realisation_admin_show', {'id': realisation.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('realisation_admin_show', {'id': realisation.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('realisation_admin_edit', {'id': realisation.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('realisation_admin_edit', {'id': realisation.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

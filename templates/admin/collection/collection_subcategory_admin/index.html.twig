@@ -23,12 +23,19 @@
                         <tr>
                             <td>{{ collection_subcategory.name }}</td>
                             <td>{{ collection_subcategory.slug }}</td>
-                            <td>{{ collection_subcategory.picture }}</td>
                             <td>
-                                <a href="{{ path('collection_subcategory_admin_show', {'id': collection_subcategory.id}) }}">Voir</a>
+                                {% if collection_subcategory.picture is not empty %}
+                                    <a target="_blank" class="text-decoration-none"
+                                       href="{{ asset('uploads/SousCategCollection/' ~ collection_subcategory.picture ) }}">Image</a>
+                                {% else %}
+                                    Non
+                                {% endif %}
                             </td>
                             <td>
-                                <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('collection_subcategory_admin_show', {'id': collection_subcategory.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a class="text-decoration-none" href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

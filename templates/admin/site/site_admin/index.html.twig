@@ -23,10 +23,10 @@
                             <td>{{ site.register ? 'Oui' : 'Non' }}</td>
                             <td>{{ site.available ? 'Oui' : 'Non' }}</td>
                             <td>
-                                <a href="{{ path('site_show', {'id': site.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('site_show', {'id': site.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('site_edit', {'id': site.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('site_edit', {'id': site.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

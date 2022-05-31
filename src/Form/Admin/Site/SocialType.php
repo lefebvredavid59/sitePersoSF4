@@ -1,32 +1,27 @@
 <?php
 
-namespace App\Form\Admin;
+namespace App\Form\Admin\Site;
 
-use App\Entity\CollectionCategory;
+use App\Entity\Social;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CollectionCategoryType extends AbstractType
+class SocialType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('picture',FileType::class,[
-                'mapped' => false,
-                'required'=> false,
-                'label' => 'Image article'
-            ])
             ->add('name')
-            ->add('slug')
+            ->add('logo')
+            ->add('link')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => CollectionCategory::class,
+            'data_class' => Social::class,
         ]);
     }
 }

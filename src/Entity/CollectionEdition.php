@@ -7,6 +7,7 @@ use App\Repository\CollectionEditionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+
 /**
  * @ApiResource(
  *     collectionOperations={"get"},
@@ -33,12 +34,6 @@ class CollectionEdition
      * @ORM\Column(type="string", length=128,unique=true)
      *
     private $slug;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=CollectionSubcategory::class, inversedBy="collectionEditions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $subcategory;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -70,18 +65,6 @@ class CollectionEdition
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getSubcategory(): ?CollectionSubcategory
-    {
-        return $this->subcategory;
-    }
-
-    public function setSubcategory(?CollectionSubcategory $subcategory): self
-    {
-        $this->subcategory = $subcategory;
 
         return $this;
     }

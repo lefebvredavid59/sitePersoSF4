@@ -23,10 +23,10 @@
                             <td>{{ categ_blog.name }}</td>
                             <td>{{ categ_blog.slug }}</td>
                             <td>
-                                <a href="{{ path('categ_blog_admin_show', {'id': categ_blog.id}) }}">Voir</a>
+                                <a class="text-decoration-none" href="{{ path('categ_blog_admin_show', {'id': categ_blog.id}) }}">Voir</a>
                             </td>
                             <td>
-                                <a href="{{ path('categ_blog_admin_edit', {'id': categ_blog.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('categ_blog_admin_edit', {'id': categ_blog.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}

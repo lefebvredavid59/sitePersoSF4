@@ -9,11 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+
 /**
- * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"}
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=CollectionCategoryRepository::class)
  */
 class CollectionCategory

@@ -23,12 +23,19 @@
                         <tr>
                             <td>{{ collection_category.name }}</td>
                             <td>{{ collection_category.slug }}</td>
-                            <td>{{ collection_category.picture }}</td>
                             <td>
-                                <a href="{{ path('collection_category_admin_show', {'id': collection_category.id}) }}">Voir</a>
+                                {% if collection_category.picture is not empty %}
+                                    <a target="_blank" class="text-decoration-none"
+                                       href="{{ asset('uploads/CategCollection/' ~ collection_category.picture ) }}">Image</a>
+                                {% else %}
+                                    Non
+                                {% endif %}
                             </td>
                             <td>
-                                <a href="{{ path('collection_category_admin_edit', {'id': collection_category.id}) }}">Modifier</a>
+                                <a class="text-decoration-none" href="{{ path('collection_category_admin_show', {'id': collection_category.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a class="text-decoration-none" href="{{ path('collection_category_admin_edit', {'id': collection_category.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}
