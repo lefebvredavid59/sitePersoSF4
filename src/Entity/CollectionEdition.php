@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CollectionEditionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=CollectionEditionRepository::class)
  */
 class CollectionEdition
@@ -25,8 +29,9 @@ class CollectionEdition
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=128,unique=true)
+     *
     private $slug;
 
     /**
@@ -91,5 +96,10 @@ class CollectionEdition
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

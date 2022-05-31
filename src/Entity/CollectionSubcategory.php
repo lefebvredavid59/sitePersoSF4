@@ -7,9 +7,13 @@ use App\Repository\CollectionSubcategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=CollectionSubcategoryRepository::class)
  */
 class CollectionSubcategory
@@ -27,7 +31,8 @@ class CollectionSubcategory
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=128,unique=true)
      */
     private $slug;
 
@@ -133,5 +138,10 @@ class CollectionSubcategory
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

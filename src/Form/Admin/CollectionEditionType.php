@@ -4,6 +4,7 @@ namespace App\Form\Admin;
 
 use App\Entity\CollectionEdition;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,11 @@ class CollectionEditionType extends AbstractType
     {
         $builder
             ->add('subcategory')
-            ->add('picture')
+            ->add('picture',FileType::class,[
+                'mapped' => false,
+                'required'=> false,
+                'label' => 'Image article'
+            ])
             ->add('name')
             ->add('slug')
         ;
