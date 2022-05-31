@@ -21,7 +21,7 @@ class CollectionEditionAdminController extends AbstractController
      */
     public function index(CollectionEditionRepository $collectionEditionRepository): Response
     {
-        return $this->render('collection_edition_admin/index.html.twig', [
+        return $this->render('admin/collection/collection_edition_admin/index.html.twig', [
             'collection_editions' => $collectionEditionRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class CollectionEditionAdminController extends AbstractController
             return $this->redirectToRoute('collection_edition_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('collection_edition_admin/new.html.twig', [
+        return $this->render('admin/collection/collection_edition_admin/new.html.twig', [
             'collection_edition' => $collectionEdition,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class CollectionEditionAdminController extends AbstractController
      */
     public function show(CollectionEdition $collectionEdition): Response
     {
-        return $this->render('collection_edition_admin/show.html.twig', [
+        return $this->render('admin/collection/collection_edition_admin/show.html.twig', [
             'collection_edition' => $collectionEdition,
         ]);
     }
@@ -72,7 +72,7 @@ class CollectionEditionAdminController extends AbstractController
             return $this->redirectToRoute('collection_edition_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('collection_edition_admin/edit.html.twig', [
+        return $this->render('admin/collection/collection_edition_admin/edit.html.twig', [
             'collection_edition' => $collectionEdition,
             'form' => $form->createView(),
         ]);
