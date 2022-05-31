@@ -1,0 +1,13 @@
+{% extends '../../../base.html.twig' %}
+
+{% block title %}Edit CollectionCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit CollectionCategory</h1>
+
+    {{ include('collection_category_admin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('collection_category_admin_index') }}">back to list</a>
+
+    {{ include('collection_category_admin/_delete_form.html.twig') }}
+{% endblock %}

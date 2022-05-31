@@ -81,5 +81,23 @@
             </div>
         </div>
 
+        <h1 class="navhead display-2 text-center my-3">Espace Collections</h1>
+
+        <div class="col-sm-4 py-2 text-center">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h3 class="card-title"><i class="fa-solid fa-sitemap"></i> Gestion collections</h3>
+                    <p class="card-text">Gestion des Collections</p>
+
+                    <div class="btn-group">
+                        <a href="{{ path('collection_category_admin_index') }}" class="btn btn-outline-light">Catégorie</a>
+                        <a href="{{ path('collection_subcategory_admin_index') }}" class="btn btn-outline-light">Sous-Catégorie</a>
+                        <a href="{{ path('collection_edition_admin_index') }}" class="btn btn-outline-light">Editions</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 {% endblock %}

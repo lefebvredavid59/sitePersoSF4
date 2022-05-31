@@ -1,0 +1,37 @@
+{% extends '../../../base.html.twig' %}
+
+{% block title %}CollectionSubcategory index{% endblock %}
+
+{% block body %}
+    <h1>CollectionSubcategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collection_subcategory in collection_subcategories %}
+            <tr>
+                <td>{{ collection_subcategory.id }}</td>
+                <td>{{ collection_subcategory.name }}</td>
+                <td>{{ collection_subcategory.slug }}</td>
+                <td>
+                    <a href="{{ path('collection_subcategory_admin_show', {'id': collection_subcategory.id}) }}">show</a>
+                    <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('collection_subcategory_admin_new') }}">Create new</a>
+{% endblock %}

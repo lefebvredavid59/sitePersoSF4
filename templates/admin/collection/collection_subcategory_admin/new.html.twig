@@ -1,0 +1,11 @@
+{% extends '../../../base.html.twig' %}
+
+{% block title %}New CollectionSubcategory{% endblock %}
+
+{% block body %}
+    <h1>Create new CollectionSubcategory</h1>
+
+    {{ include('collection_subcategory_admin/_form.html.twig') }}
+
+    <a href="{{ path('collection_subcategory_admin_index') }}">back to list</a>
+{% endblock %}

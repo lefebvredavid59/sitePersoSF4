@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CollectionEdition{% endblock %}
+
+{% block body %}
+    <h1>Create new CollectionEdition</h1>
+
+    {{ include('collection_edition_admin/_form.html.twig') }}
+
+    <a href="{{ path('collection_edition_admin_index') }}">back to list</a>
+{% endblock %}
