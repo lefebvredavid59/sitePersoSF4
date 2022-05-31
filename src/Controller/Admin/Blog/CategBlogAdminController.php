@@ -56,7 +56,7 @@ class CategBlogAdminController extends AbstractController
     public function show(CategBlog $categBlog): Response
     {
         return $this->render('admin/blog/categ_blog_admin/show.html.twig', [
-            'category_blog' => $categBlog,
+            'categ_blog' => $categBlog,
         ]);
     }
 
@@ -75,7 +75,7 @@ class CategBlogAdminController extends AbstractController
         }
 
         return $this->render('admin/blog/categ_blog_admin/edit.html.twig', [
-            'category_blog' => $categBlog,
+            'categ_blog' => $categBlog,
             'form' => $form->createView(),
         ]);
     }

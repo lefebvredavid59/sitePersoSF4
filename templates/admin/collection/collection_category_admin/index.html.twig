@@ -1,37 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CollectionCategory index{% endblock %}
+{% block title %}{{ parent() }} Gestion Catégorie Collection{% endblock %}
 
 {% block body %}
-    <h1>CollectionCategory index</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion Catégorie Collection</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for collection_category in collection_categories %}
-            <tr>
-                <td>{{ collection_category.id }}</td>
-                <td>{{ collection_category.name }}</td>
-                <td>{{ collection_category.slug }}</td>
-                <td>
-                    <a href="{{ path('collection_category_admin_show', {'id': collection_category.id}) }}">show</a>
-                    <a href="{{ path('collection_category_admin_edit', {'id': collection_category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="table-responsive card-body shadow-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Slug</th>
+                        <th>Image</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for collection_category in collection_categories %}
+                        <tr>
+                            <td>{{ collection_category.name }}</td>
+                            <td>{{ collection_category.slug }}</td>
+                            <td>{{ collection_category.picture }}</td>
+                            <td>
+                                <a href="{{ path('collection_category_admin_show', {'id': collection_category.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('collection_category_admin_edit', {'id': collection_category.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="text-center">
+                            <td colspan="5">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-    <a href="{{ path('collection_category_admin_new') }}">Create new</a>
+
+                <div class="d-grid">
+                    <a href="{{ path('collection_category_admin_new') }}" class="btn btn-outline-info">Créer une
+                        nouvelle catégorie</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

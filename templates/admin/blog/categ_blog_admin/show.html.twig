@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} Gestion Catégorie {{ category_blog.name }}{% endblock %}
+{% block title %}{{ parent() }} Gestion Catégorie {{ categ_blog.name }}{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 class="navhead display-2 text-center">Gestion Catégorie {{ category_blog.name }}</h1>
+        <h1 class="navhead display-2 text-center">Gestion Catégorie {{ categ_blog.name }}</h1>
 
         <div class="card">
             <div class="card-body shadow-lg">
@@ -26,7 +26,7 @@
                     <a href="{{ path('categ_blog_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
                         liste</a>
 
-                    <a href="{{ path('categ_blog_admin_edit', {'id': category_blog.id}) }}"
+                    <a href="{{ path('categ_blog_admin_edit', {'id': categ_blog.id}) }}"
                        class="btn btn-outline-secondary">Modifier</a>
 
                     {{ include('admin/blog/categ_blog_admin/_delete_form.html.twig') }}

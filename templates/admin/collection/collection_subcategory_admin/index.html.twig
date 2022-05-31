@@ -1,37 +1,49 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}CollectionSubcategory index{% endblock %}
+{% block title %}{{ parent() }} Gestion Sous-Catégorie Collection{% endblock %}
 
 {% block body %}
-    <h1>CollectionSubcategory index</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Gestion Sous-Catégorie Collection</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for collection_subcategory in collection_subcategories %}
-            <tr>
-                <td>{{ collection_subcategory.id }}</td>
-                <td>{{ collection_subcategory.name }}</td>
-                <td>{{ collection_subcategory.slug }}</td>
-                <td>
-                    <a href="{{ path('collection_subcategory_admin_show', {'id': collection_subcategory.id}) }}">show</a>
-                    <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="table-responsive card-body shadow-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Slug</th>
+                        <th>Image</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for collection_subcategory in collection_subcategories %}
+                        <tr>
+                            <td>{{ collection_subcategory.name }}</td>
+                            <td>{{ collection_subcategory.slug }}</td>
+                            <td>{{ collection_subcategory.picture }}</td>
+                            <td>
+                                <a href="{{ path('collection_subcategory_admin_show', {'id': collection_subcategory.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="text-center">
+                            <td colspan="5">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-    <a href="{{ path('collection_subcategory_admin_new') }}">Create new</a>
+                <div class="d-grid">
+                    <a href="{{ path('collection_subcategory_admin_new') }}" class="btn btn-outline-info">Créer une
+                        nouvelle Sous-Catégorie</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

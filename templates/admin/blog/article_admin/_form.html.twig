@@ -1,6 +1,12 @@
 {{ form_start(form) }}
 
 <div class="form-floating mb-3">
+    {{ form_widget(form.category,
+        {'attr': {'class':'form-control','placeholder': 'Categorie'}}) }}
+    {{ form_label(form.category) }}
+</div>
+
+<div class="form-floating mb-3">
     {{ form_widget(form.title,
         {'attr': {'class':'form-control','placeholder': 'Titre'}}) }}
     {{ form_label(form.title) }}
@@ -20,12 +26,6 @@
 <div class="form-floating mb-3">
     {{ form_widget(form.content,
         {'attr': {'class':'form-control'}}) }}
-</div>
-
-<div class="form-floating mb-3">
-    {{ form_widget(form.category,
-        {'attr': {'class':'form-control','placeholder': 'Categorie'}}) }}
-    {{ form_label(form.category) }}
 </div>
 
 <div class="d-grid my-3">

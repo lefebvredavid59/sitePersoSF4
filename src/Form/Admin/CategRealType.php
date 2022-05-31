@@ -14,7 +14,7 @@ class CategRealType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de la catégorie Blog'
+                'label' => 'Nom de la catégorie Réalisation'
             ]);
     }
 

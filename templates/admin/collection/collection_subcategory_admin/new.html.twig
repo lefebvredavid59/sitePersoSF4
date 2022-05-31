@@ -1,11 +1,25 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}New CollectionSubcategory{% endblock %}
+{% block title %}{{ parent() }} Nouvelle Sous-Catégorie Collection{% endblock %}
 
 {% block body %}
-    <h1>Create new CollectionSubcategory</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Nouvelle Sous-Catégorie Collection</h1>
 
-    {{ include('collection_subcategory_admin/_form.html.twig') }}
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('collection_subcategory_admin_index') }}">back to list</a>
+                    {{ include('admin/collection/collection_subcategory_admin/_form.html.twig') }}
+
+                    <div class="d-grid">
+                        <a href="{{ path('collection_subcategory_admin_index') }}" class="btn btn-outline-primary">Retour
+                            a
+                            la
+                            liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
