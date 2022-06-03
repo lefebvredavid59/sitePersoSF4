@@ -24,7 +24,7 @@ class RealisationAdminController extends AbstractController
      */
     public function index(RealisationRepository $realisationRepository): Response
     {
-        return $this->render('admin/Real/realisation_admin/index.html.twig', [
+        return $this->render('admin/real/realisation_admin/index.html.twig', [
             'realisations' => $realisationRepository->findAll(),
         ]);
     }
@@ -50,7 +50,7 @@ class RealisationAdminController extends AbstractController
             return $this->redirectToRoute('realisation_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Real/realisation_admin/new.html.twig', [
+        return $this->render('admin/real/realisation_admin/new.html.twig', [
             'realisation' => $realisation,
             'form' => $form->createView(),
         ]);
@@ -62,7 +62,7 @@ class RealisationAdminController extends AbstractController
     public
     function show(Realisation $realisation): Response
     {
-        return $this->render('admin/Real/realisation_admin/show.html.twig', [
+        return $this->render('admin/real/realisation_admin/show.html.twig', [
             'realisation' => $realisation,
         ]);
     }
@@ -91,7 +91,7 @@ class RealisationAdminController extends AbstractController
             return $this->redirectToRoute('realisation_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Real/realisation_admin/edit.html.twig', [
+        return $this->render('admin/real/realisation_admin/edit.html.twig', [
             'realisation' => $realisation,
             'form' => $form->createView(),
         ]);
