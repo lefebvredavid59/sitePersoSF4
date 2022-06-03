@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CollectionFamily index{% endblock %}
+
+{% block body %}
+    <h1>CollectionFamily index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Picture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collection_family in collection_families %}
+            <tr>
+                <td>{{ collection_family.id }}</td>
+                <td>{{ collection_family.name }}</td>
+                <td>{{ collection_family.slug }}</td>
+                <td>{{ collection_family.picture }}</td>
+                <td>
+                    <a href="{{ path('collection_family_admin_show', {'id': collection_family.id}) }}">show</a>
+                    <a href="{{ path('collection_family_admin_edit', {'id': collection_family.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('collection_family_admin_new') }}">Create new</a>
+{% endblock %}
