@@ -23,7 +23,7 @@ class CategRealAdminController extends AbstractController
      */
     public function index(CategRealRepository $categRealRepository): Response
     {
-        return $this->render('admin/Real/categ_real_admin/index.html.twig', [
+        return $this->render('admin/real/categ_real_admin/index.html.twig', [
             'categ_reals' => $categRealRepository->findAll(),
         ]);
     }
@@ -44,7 +44,7 @@ class CategRealAdminController extends AbstractController
             return $this->redirectToRoute('categ_real_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Real/categ_real_admin/new.html.twig', [
+        return $this->render('admin/real/categ_real_admin/new.html.twig', [
             'categ_real' => $categReal,
             'form' => $form->createView(),
         ]);
@@ -55,7 +55,7 @@ class CategRealAdminController extends AbstractController
      */
     public function show(CategReal $categReal): Response
     {
-        return $this->render('admin/Real/categ_real_admin/show.html.twig', [
+        return $this->render('admin/real/categ_real_admin/show.html.twig', [
             'categ_real' => $categReal,
         ]);
     }
@@ -74,7 +74,7 @@ class CategRealAdminController extends AbstractController
             return $this->redirectToRoute('categ_real_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/Real/categ_real_admin/edit.html.twig', [
+        return $this->render('admin/real/categ_real_admin/edit.html.twig', [
             'categ_real' => $categReal,
             'form' => $form->createView(),
         ]);
