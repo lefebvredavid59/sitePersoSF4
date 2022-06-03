@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/categ-real")
+ * @Route("/zone-admin/categ-real")
  * @IsGranted("ROLE_ADMIN")
  */
 class CategRealAdminController extends AbstractController

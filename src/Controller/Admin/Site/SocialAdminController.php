@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/social-admin")
+ * @Route("/zone-admin/social-admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class SocialAdminController extends AbstractController

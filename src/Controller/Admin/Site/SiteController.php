@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/site")
+ * @Route("/zone-admin/site")
  * @IsGranted("ROLE_ADMIN")
  */
 class SiteController extends AbstractController

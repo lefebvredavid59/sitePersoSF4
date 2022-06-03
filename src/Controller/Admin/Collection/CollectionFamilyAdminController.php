@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/collection-family-admin")
+ * @Route("/zone-admin/collection-family-admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class CollectionFamilyAdminController extends AbstractController
@@ -24,7 +24,7 @@ class CollectionFamilyAdminController extends AbstractController
      */
     public function index(CollectionFamilyRepository $collectionFamilyRepository): Response
     {
-        return $this->render('collection_family_admin/index.html.twig', [
+        return $this->render('admin/collection/collection_family_admin/index.html.twig', [
             'collection_families' => $collectionFamilyRepository->findAll(),
         ]);
     }
@@ -50,7 +50,7 @@ class CollectionFamilyAdminController extends AbstractController
             return $this->redirectToRoute('collection_family_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('collection_family_admin/new.html.twig', [
+        return $this->render('admin/collection/collection_family_admin/new.html.twig', [
             'collection_family' => $collectionFamily,
             'form' => $form->createView(),
         ]);
@@ -61,7 +61,7 @@ class CollectionFamilyAdminController extends AbstractController
      */
     public function show(CollectionFamily $collectionFamily): Response
     {
-        return $this->render('collection_family_admin/show.html.twig', [
+        return $this->render('admin/collection/collection_family_admin/show.html.twig', [
             'collection_family' => $collectionFamily,
         ]);
     }
@@ -90,7 +90,7 @@ class CollectionFamilyAdminController extends AbstractController
             return $this->redirectToRoute('collection_family_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('collection_family_admin/edit.html.twig', [
+        return $this->render('admin/collection/collection_family_admin/edit.html.twig', [
             'collection_family' => $collectionFamily,
             'form' => $form->createView(),
         ]);

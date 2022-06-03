@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/collection-edition-admin")
+ * @Route("/zone-admin/collection-edition-admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class CollectionEditionAdminController extends AbstractController

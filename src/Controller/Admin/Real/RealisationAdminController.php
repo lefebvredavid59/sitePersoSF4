@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/realisation-admin")
+ * @Route("/zone-admin/realisation-admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class RealisationAdminController extends AbstractController
