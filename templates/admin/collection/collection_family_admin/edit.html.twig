@@ -1,13 +1,24 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Edit CollectionFamily{% endblock %}
+{% block title %}{{ parent() }} Edition de la famille de produit - {{ collection_family.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit CollectionFamily</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Edition de la famille de produit - {{ collection_family.name }}</h1>
 
-    {{ include('collection_family_admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card">
+            <div class="card-body shadow-lg">
 
-    <a href="{{ path('collection_family_admin_index') }}">back to list</a>
+                {{ include('admin/collection/collection_family_admin/_form.html.twig',
+        {'button_label': 'Mis a jour'}) }}
 
-    {{ include('collection_family_admin/_delete_form.html.twig') }}
+    <div class="d-grid">
+        <a href="{{ path('collection_family_admin_index') }}" class="btn btn-outline-primary">Retour à la
+        liste</a>
+    </div>
+
+    {{ include('admin/collection/collection_family_admin/_delete_form.html.twig') }}
+    </div>
+    </div>
+    </div>
 {% endblock %}

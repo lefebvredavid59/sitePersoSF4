@@ -1,11 +1,24 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}New CollectionFamily{% endblock %}
+{% block title %}{{ parent() }} Nouvelle famille de produit{% endblock %}
 
 {% block body %}
-    <h1>Create new CollectionFamily</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Nouvelle famille de produit</h1>
 
-    {{ include('collection_family_admin/_form.html.twig') }}
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('collection_family_admin_index') }}">back to list</a>
+
+                    {{ include('admin/collection/collection_family_admin/_form.html.twig') }}
+                    <div class="d-grid">
+                        <a href="{{ path('collection_family_admin_index') }}" class="btn btn-outline-primary">Retour a
+                            la
+                            liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

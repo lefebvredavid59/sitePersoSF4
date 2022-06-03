@@ -32,7 +32,8 @@ class CollectionEditionAdminController extends AbstractController
     /**
      * @Route("/new", name="collection_edition_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, UploadCollectionEdition $uploadCollectionEdition): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,
+                        UploadCollectionEdition $upload): Response
     {
         $collectionEdition = new CollectionEdition();
         $form = $this->createForm(CollectionEditionType::class, $collectionEdition);
@@ -40,7 +41,7 @@ class CollectionEditionAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($image = $form->get('picture')->getData()) {
-                $fileName = $uploadCollectionEdition->upload($image);
+                $fileName = $upload->upload($image);
                 //Mets a jour l'entite
                 $collectionEdition->setPicture($fileName);
             }
@@ -69,7 +70,8 @@ class CollectionEditionAdminController extends AbstractController
     /**
      * @Route("/{id}/edit", name="collection_edition_admin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager, UploadCollectionEdition $uploadCollectionEdition): Response
+    public function edit(Request $request, CollectionEdition $collectionEdition, EntityManagerInterface $entityManager,
+                         UploadCollectionEdition $upload): Response
     {
         $form = $this->createForm(CollectionEditionType::class, $collectionEdition);
         $form->handleRequest($request);
@@ -78,9 +80,9 @@ class CollectionEditionAdminController extends AbstractController
             if ($image = $form->get('picture')->getData()) {
                 // Supprimer l'image deja existante
                 if ($collectionEdition->getPicture()) {
-                    $uploadCollectionEdition->remove($collectionEdition->getPicture());
+                    $upload->remove($collectionEdition->getPicture());
                 }
-                $fileName = $uploadCollectionEdition->upload($image);
+                $fileName = $upload->upload($image);
                 //Mets a jour l'entite
                 $collectionEdition->setPicture($fileName);
             }

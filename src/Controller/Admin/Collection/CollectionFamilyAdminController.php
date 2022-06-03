@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Collection;
 
 use App\Entity\CollectionFamily;
-use App\Form\CollectionFamilyType;
+use App\Form\Admin\Collection\CollectionFamilyType;
 use App\Repository\CollectionFamilyRepository;
 use App\Service\UploadCollectionFamily;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +32,8 @@ class CollectionFamilyAdminController extends AbstractController
     /**
      * @Route("/new", name="collection_family_admin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, UploadCollectionFamily $uploadCollectionFamily): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,
+                        UploadCollectionFamily $upload): Response
     {
         $collectionFamily = new CollectionFamily();
         $form = $this->createForm(CollectionFamilyType::class, $collectionFamily);
@@ -40,7 +41,7 @@ class CollectionFamilyAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($image = $form->get('picture')->getData()) {
-                $fileName = $uploadCollectionFamily->upload($image);
+                $fileName = $upload->upload($image);
                 //Mets a jour l'entite
                 $collectionFamily->setPicture($fileName);
             }
@@ -70,7 +71,7 @@ class CollectionFamilyAdminController extends AbstractController
      * @Route("/{id}/edit", name="collection_family_admin_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, CollectionFamily $collectionFamily, EntityManagerInterface $entityManager,
-    UploadCollectionFamily $uploadCollectionFamily): Response
+    UploadCollectionFamily $upload): Response
     {
         $form = $this->createForm(CollectionFamilyType::class, $collectionFamily);
         $form->handleRequest($request);
@@ -79,9 +80,9 @@ class CollectionFamilyAdminController extends AbstractController
             if ($image = $form->get('picture')->getData()) {
                 // Supprimer l'image deja existante
                 if ($collectionFamily->getPicture()) {
-                    $uploadCollectionFamily->remove($collectionFamily->getPicture());
+                    $upload->remove($collectionFamily->getPicture());
                 }
-                $fileName = $uploadCollectionFamily->upload($image);
+                $fileName = $upload->upload($image);
                 //Mets a jour l'entite
                 $collectionFamily->setPicture($fileName);
             }

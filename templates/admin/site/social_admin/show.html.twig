@@ -6,34 +6,36 @@
     <div class="container">
         <h1 class="navhead display-2 text-center">Gestion {{ social.name }}</h1>
 
-        <div class="card">
-            <div class="card-body shadow-lg">
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-                <table class="table text-center">
-                    <tbody>
-                    <tr>
-                        <th>Nom</th>
-                        <td>{{ social.name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Logo</th>
-                        <td><i class="{{ social.logo }} fa-2xl"></i></td>
-                    </tr>
-                    <tr>
-                        <th>Lien</th>
-                        <td>{{ social.link }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="d-grid">
-                    <a href="{{ path('social_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
-                        liste</a>
+                    <table class="table text-center">
+                        <tbody>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ social.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Logo</th>
+                            <td><i class="{{ social.logo }} fa-2xl"></i></td>
+                        </tr>
+                        <tr>
+                            <th>Lien</th>
+                            <td>{{ social.link }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-grid">
+                        <a href="{{ path('social_admin_index') }}" class="btn btn-outline-primary my-3">Retour a la
+                            liste</a>
 
-                    <a href="{{ path('social_admin_edit', {'id': social.id}) }}" class="btn btn-outline-secondary">Modifier</a>
+                        <a href="{{ path('social_admin_edit', {'id': social.id}) }}" class="btn btn-outline-secondary">Modifier</a>
 
-                    {{ include('admin/site/social_admin/_delete_form.html.twig') }}
+                        {{ include('admin/site/social_admin/_delete_form.html.twig') }}
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>

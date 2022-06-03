@@ -8,7 +8,7 @@
 
         <div class="card">
             <div class="table-responsive card-body shadow-lg">
-                <table class="table">
+                <table class="table text-center">
                     <thead>
                     <tr>
                         <th>Nom</th>
@@ -23,9 +23,17 @@
                         <tr>
                             <td>{{ collection_edition.name }}</td>
                             <td>{{ collection_edition.slug }}</td>
-                            <td>{{ collection_edition.picture }}</td>
                             <td>
-                                <a class="text-decoration-none" href="{{ path('collection_edition_admin_show', {'id': collection_edition.id}) }}">Voir</a>
+                            {% if collection_edition.picture is not empty %}
+                                <a target="_blank" class="text-decoration-none"
+                                   href="{{ asset('uploads/CategCollection/' ~ collection_edition.picture ) }}">Image</a>
+                            {% else %}
+                                Non
+                            {% endif %}
+                            </td>
+                            <td>
+                                <a class="text-decoration-none" href="{{ path('collection_edition_admin_show', {'id': collection_edition.id}) }}"
+                                >Voir</a>
                             </td>
                             <td>
                                 <a class="text-decoration-none" href="{{ path('collection_edition_admin_edit', {'id': collection_edition.id}) }}">Modifier</a>

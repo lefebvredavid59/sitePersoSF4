@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="mb-3">
+    {{ form_label(form.subcategory) }}
+    {{ form_widget(form.subcategory,
+        {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form.picture) }}
+    {{ form_widget(form.picture,
+        {'attr': {'class':'form-control'}}) }}
+</div>
+
+<div class="form-floating mb-3">
+    {{ form_widget(form.name,
+        {'attr': {'class':'form-control','placeholder': 'Nom de la famille de produit'}}) }}
+    {{ form_label(form.name) }}
+</div>
+
+<div class="d-grid my-3">
+    <button class="btn btn-outline-success">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}

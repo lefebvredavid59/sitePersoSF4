@@ -14,7 +14,7 @@ class CollectionEditionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('subcategory')
+            ->add('family')
             ->add('picture',FileType::class,[
                 'mapped' => false,
                 'required'=> false,

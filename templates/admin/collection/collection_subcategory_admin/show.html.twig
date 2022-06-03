@@ -1,30 +1,52 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}CollectionSubcategory{% endblock %}
+{% block title %}{{ parent() }} Fiche sous-categorie {{ collection_subcategory.name }}{% endblock %}
 
 {% block body %}
-    <h1>CollectionSubcategory</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Fiche sous-categorie {{ collection_subcategory.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ collection_subcategory.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ collection_subcategory.name }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ collection_subcategory.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('collection_subcategory_admin_index') }}">back to list</a>
+                    <table class="table text-center">
+                        <tbody>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ collection_subcategory.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Slug</th>
+                            <td>{{ collection_subcategory.slug }}</td>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <td>
+                                {% if collection_subcategory.picture is not empty %}
+                                    <a target="_blank" class="text-decoration-none"
+                                       href="{{ asset('uploads/SousCategCollection/' ~ collection_subcategory.picture ) }}">Image</a>
+                                {% else %}
+                                    Non
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}">edit</a>
+                    <div class="d-grid">
 
-    {{ include('collection_subcategory_admin/_delete_form.html.twig') }}
+                        <a href="{{ path('collection_subcategory_admin_index') }}" class="btn btn-outline-primary my-3">Retour
+                            a la liste</a>
+
+                        <a href="{{ path('collection_subcategory_admin_edit', {'id': collection_subcategory.id}) }}"
+                           class="btn btn-outline-secondary">Modifier</a>
+
+                        {{ include('admin/collection/collection_subcategory_admin/_delete_form.html.twig') }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

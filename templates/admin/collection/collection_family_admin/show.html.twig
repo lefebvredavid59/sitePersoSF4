@@ -1,34 +1,52 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}CollectionFamily{% endblock %}
+{% block title %}{{ parent() }} Famille de produit {{ collection_family.name }}{% endblock %}
 
 {% block body %}
-    <h1>CollectionFamily</h1>
+    <div class="container">
+        <h1 class="navhead display-2 text-center">Famille de produit {{ collection_family.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ collection_family.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ collection_family.name }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ collection_family.slug }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ collection_family.picture }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body shadow-lg">
 
-    <a href="{{ path('collection_family_admin_index') }}">back to list</a>
+                    <table class="table text-center">
+                        <tbody>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ collection_family.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Slug</th>
+                            <td>{{ collection_family.slug }}</td>
+                        </tr>
+                        <tr>
+                            <th>Picture</th>
+                            <td>
+                                {% if collection_family.picture is not empty %}
+                                    <a target="_blank" class="text-decoration-none"
+                                       href="{{ asset('uploads/CategCollection/' ~ collection_family.picture ) }}">Image</a>
+                                {% else %}
+                                    Non
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('collection_family_admin_edit', {'id': collection_family.id}) }}">edit</a>
+                    <div class="d-grid">
+                        <a href="{{ path('collection_family_admin_index') }}" class="btn btn-outline-primary my-3">Retour
+                            a
+                            la liste</a>
 
-    {{ include('collection_family_admin/_delete_form.html.twig') }}
+                        <a href="{{ path('collection_family_admin_edit', {'id': collection_family.id}) }}"
+                           class="btn btn-outline-secondary">Modifier</a>
+
+                        {{ include('admin/collection/collection_family_admin/_delete_form.html.twig') }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
