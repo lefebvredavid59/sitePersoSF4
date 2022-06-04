@@ -1,5 +1,0 @@
-<form class="d-grid" method="post" action="{{ path('collection_edition_admin_delete', {'id': collection_edition.id}) }}"
-      onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet edition ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ collection_edition.id) }}">
-    <button class="btn btn-outline-danger my-3">Supprimer</button>
-</form>

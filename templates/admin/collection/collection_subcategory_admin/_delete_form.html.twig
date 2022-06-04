@@ -1,5 +1,0 @@
-<form class="d-grid" method="post" action="{{ path('collection_subcategory_admin_delete', {'id': collection_subcategory.id}) }}"
-      onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet sous-catégorie ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ collection_subcategory.id) }}">
-    <button class="btn btn-outline-danger my-3">Supprimer</button>
-</form>
