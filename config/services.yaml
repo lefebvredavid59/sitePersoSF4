@@ -15,10 +15,6 @@ services:
         bind:
             $uploadDirArticle: '%kernel.project_dir%/public/uploads/articles'
             $uploadDirReal: '%kernel.project_dir%/public/uploads/real'
-            $uploadDirCollectionCategory: '%kernel.project_dir%/public/uploads/CategCollection'
-            $uploadDirCollectionSubCategory: '%kernel.project_dir%/public/uploads/SousCategCollection'
-            $uploadCollectionFamily: '%kernel.project_dir%/public/uploads/FamilyCollection'
-            $uploadCollectionEdition: '%kernel.project_dir%/public/uploads/EditionCollection'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

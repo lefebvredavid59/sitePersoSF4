@@ -1,9 +1,20 @@
 {{ form_start(form) }}
-{{ form_start(form) }}
-<div class="mb-3">
-    {{ form_label(form.family) }}
-    {{ form_widget(form.family,
-        {'attr': {'class':'form-control'}}) }}
+<div class="row g-2 my-3">
+    <div class="col-md">
+        <div class="form-floating">
+            {{ form_widget(form.subcategory,
+                {'attr': {'class':'form-control'}}) }}
+            {{ form_label(form.subcategory, 'La sous-categorie') }}
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="form-floating">
+            {{ form_widget(form.family,
+                {'attr': {'class':'form-control'}}) }}
+            {{ form_label(form.family, 'La Famille') }}
+        </div>
+    </div>
 </div>
 <div class="mb-3">
     {{ form_label(form.picture) }}
@@ -21,3 +32,31 @@
     <button class="btn btn-outline-success">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const subcategoryEl = document.getElementById('collection_edition_subcategory');
+            subcategoryEl.addEventListener('change', function (e) {
+                const formEl = subcategoryEl.closest('form');
+                fetch(formEl.action, {
+                    method: formEl.method,
+                    body: new FormData(formEl)
+                })
+                    .then(response => response.text())
+                    .then((html) => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const newCollectionEl = doc.getElementById('collection_edition_family');
+                        newCollectionEl.addEventListener('change', function (e) {
+                            e.target.classList.remove('is-invalid');
+                        });
+                        document.getElementById('collection_edition_family').replaceWith(newCollectionEl);
+                    })
+                    .catch(function (err) {
+                        console.warn('Something went wrong.', err);
+                    });
+            });
+        });
+    </script>
+{% endblock %}
