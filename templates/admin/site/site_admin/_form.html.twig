@@ -1,7 +1,9 @@
 {{ form_start(form) }}
 
 <div class="form-floating mb-3">
-    {{ form_widget(form.content,
+    {{ form_widget(form.register,
+        {'attr': {'class':'form-control'}}) }}
+    {{ form_widget(form.available,
         {'attr': {'class':'form-control'}}) }}
 </div>
 
